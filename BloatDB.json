@@ -6,9 +6,9 @@
         "developerName": "Symantec",
         "developerURL": "https://www.symantec.com/",
         "appType": "Desktop",
-        "installPath": "/norton",
+        "installPath": "C:\\Program Files\\Norton Security",
         "uninstallPath": "/norton/uninstall",
-        "appPath": "/norton/app",
+        "appPath": "norton.exe",
         "bloatRating": 5,
         "necessary": false,
         "bloatReason": "Norton 是一套防毒軟體，但是在 Windows 上已經有內建 Windows Defender，因此不需要額外安裝防毒軟體。安裝 Norton 會影響電腦的效能。"
