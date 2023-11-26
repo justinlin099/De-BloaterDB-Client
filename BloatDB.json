@@ -82,7 +82,6 @@
         "bloatRating": 3,
         "necessary": false,
         "bloatReason": "MSI 筆電內附的修圖軟體，但是是試用版，如果要使用完整功能的話需要付費購買。安裝在電腦上不會影響效能，但是會佔用空間。如果不需要可以進行移除。"
-
     },
     {
         "appName": "PowerDirector 17 essential for MSI",
@@ -97,5 +96,103 @@
         "bloatRating": 3,
         "necessary": false,
         "bloatReason": "MSI 筆電內附的影片剪輯軟體，但是是試用版，如果要使用完整功能的話需要付費購買。安裝在電腦上不會影響效能，但是會佔用空間。如果不需要可以進行移除。"
+    },
+    {
+        "appName": "AMD Radeon Software",
+        "appShortName": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+        "appDescription": "Unknown",
+        "developerName": "AdvancedMicroDevicesInc-2",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+        "uninstallPath": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+        "appPath": "AdvancedMicroDevicesInc-2.AMDRadeonSoftware",
+        "bloatRating": 0,
+        "necessary": false,
+        "bloatReason": "AMD 顯示卡的必要軟體，如果沒有安裝將無法正常調整顯示設定。"
+    },
+    {
+        "appName": "RealtekAudioControl",
+        "appShortName": "RealtekSemiconductorCorp.RealtekAudioControl",
+        "appDescription": "Unknown",
+        "developerName": "RealtekSemiconductorCorp",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "RealtekSemiconductorCorp.RealtekAudioControl",
+        "uninstallPath": "RealtekSemiconductorCorp.RealtekAudioControl",
+        "appPath": "RealtekSemiconductorCorp.RealtekAudioControl",
+        "bloatRating": 0,
+        "necessary": false,
+        "bloatReason": "電腦上所使用的瑞昱音效卡的必要軟體，刪除將會無法控制音訊的輸入輸出功能，且該程式沒有廣告或是占用過多資源的疑慮。"
+    },
+    {
+        "appName": "Cortana",
+        "appShortName": "Microsoft.549981C3F5F10",
+        "appDescription": "Unknown",
+        "developerName": "Microsoft",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "Microsoft.549981C3F5F10",
+        "uninstallPath": "Microsoft.549981C3F5F10",
+        "appPath": "Microsoft.549981C3F5F10",
+        "bloatRating": 3,
+        "necessary": false,
+        "bloatReason": "微軟的內建語音助理，繁體中文無法使用且會占用硬碟空間。"
+    },
+    {
+        "appName": "Microsoft Todos",
+        "appShortName": "Microsoft.Todos",
+        "appDescription": "Unknown",
+        "developerName": "Microsoft",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "Microsoft.Todos",
+        "uninstallPath": "Microsoft.Todos",
+        "appPath": "Microsoft.Todos",
+        "bloatRating": 1,
+        "necessary": false,
+        "bloatReason": "微軟的備忘錄軟體，不需要可以移除節省硬碟空間"
+    },
+    {
+        "appName": "微軟接龍",
+        "appShortName": "Microsoft.MicrosoftSolitaireCollection",
+        "appDescription": "Unknown",
+        "developerName": "Microsoft",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "Microsoft.MicrosoftSolitaireCollection",
+        "uninstallPath": "Microsoft.MicrosoftSolitaireCollection",
+        "appPath": "Microsoft.MicrosoftSolitaireCollection",
+        "bloatRating": 3,
+        "necessary": false,
+        "bloatReason": "預裝的接龍遊戲，內部有廣告及付費選項，如果想要玩接龍可以下載 Win7 的舊版接龍，體驗較順暢且無廣告"
+    },
+    {
+        "appName": "Microsoft Office Hub",
+        "appShortName": "Microsoft.MicrosoftOfficeHub",
+        "appDescription": "Unknown",
+        "developerName": "Microsoft",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "Microsoft.MicrosoftOfficeHub",
+        "uninstallPath": "Microsoft.MicrosoftOfficeHub",
+        "appPath": "Microsoft.MicrosoftOfficeHub",
+        "bloatRating": 1,
+        "necessary": false,
+        "bloatReason": "不需要用到的軟體，內部只是提供你付費購買 Office 365 的連結，並不具備 Office 本身的功能，不需要可以移除以節省硬碟空間。"
+    },
+    {
+        "appName": "Clipchamp",
+        "appShortName": "Clipchamp.Clipchamp",
+        "appDescription": "Unknown",
+        "developerName": "Clipchamp",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "Clipchamp.Clipchamp",
+        "uninstallPath": "Clipchamp.Clipchamp",
+        "appPath": "Clipchamp.Clipchamp",
+        "bloatRating": 1,
+        "necessary": false,
+        "bloatReason": "微軟收購的影片剪輯軟體，且內部有付費選項，功能也較陽春，如果不需要可以移除節省硬碟空間"
     }
 ]
