@@ -5,9 +5,5 @@
 import os
 import json
 import subprocess
+import UWPScanner
 
-#執行Powershell指令並且擷取輸出字串
-process = subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'Get-AppxPackage'], stdout=subprocess.PIPE)
-
-for line in process.stdout:
-    print(line.decode('utf-8'))
