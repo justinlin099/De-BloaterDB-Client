@@ -1,0 +1,575 @@
+{
+    "ProcessorName": "AMD Ryzen 7 7840U w/ Radeon  780M Graphics     ",
+    "InstallDate": {
+        "Year": "2023",
+        "Month": "11",
+        "Day": "26"
+    },
+    "Manufacturer": "",
+    "Memory": {
+        "Type": "Unknown",
+        "Speed": "\r\r\n",
+        "Size": 0,
+        "String": "0GB Unknown \r\r\nMHz"
+    },
+    "UWPApps": {
+        "Microsoft.Windows.OOBENetworkConnectionFlow": {
+            "Name": "Microsoft.Windows.OOBENetworkConnectionFlow",
+            "Architecture": "Neutral",
+            "Version": "10.0.21302.1000",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.OOBENetworkCaptivePortal": {
+            "Name": "Microsoft.Windows.OOBENetworkCaptivePortal",
+            "Architecture": "Neutral",
+            "Version": "10.0.21302.1000",
+            "Publisher": "Microsoft"
+        },
+        "MicrosoftWindows.UndockedDevKit": {
+            "Name": "MicrosoftWindows.UndockedDevKit",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.1",
+            "Publisher": "MicrosoftWindows"
+        },
+        "Microsoft.UI.Xaml.CBS": {
+            "Name": "Microsoft.UI.Xaml.CBS",
+            "Architecture": "X64",
+            "Version": "8.2305.16002.0",
+            "Publisher": "Microsoft"
+        },
+        "MicrosoftWindows.Client.Core": {
+            "Name": "MicrosoftWindows.Client.Core",
+            "Architecture": "X64",
+            "Version": "1000.22643.1000.0",
+            "Publisher": "MicrosoftWindows"
+        },
+        "Microsoft.WindowsAppRuntime.CBS": {
+            "Name": "Microsoft.WindowsAppRuntime.CBS",
+            "Architecture": "X64",
+            "Version": "4000.1000.1727.0",
+            "Publisher": "Microsoft"
+        },
+        "MicrosoftWindows.Client.FileExp": {
+            "Name": "MicrosoftWindows.Client.FileExp",
+            "Architecture": "X64",
+            "Version": "1000.22651.1000.0",
+            "Publisher": "MicrosoftWindows"
+        },
+        "Microsoft.Windows.CloudExperienceHost": {
+            "Name": "Microsoft.Windows.CloudExperienceHost",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.2361",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.BioEnrollment": {
+            "Name": "Microsoft.BioEnrollment",
+            "Architecture": "Neutral",
+            "Version": "10.0.19587.1000",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.AAD.BrokerPlugin": {
+            "Name": "Microsoft.AAD.BrokerPlugin",
+            "Architecture": "Neutral",
+            "Version": "1000.19580.1000.0",
+            "Publisher": "Microsoft"
+        },
+        "MicrosoftWindows.Client.CBS": {
+            "Name": "MicrosoftWindows.Client.CBS",
+            "Architecture": "X64",
+            "Version": "1000.22674.1000.0",
+            "Publisher": "MicrosoftWindows"
+        },
+        "Microsoft.Windows.StartMenuExperienceHost": {
+            "Name": "Microsoft.Windows.StartMenuExperienceHost",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.2215",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.ShellExperienceHost": {
+            "Name": "Microsoft.Windows.ShellExperienceHost",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.2215",
+            "Publisher": "Microsoft"
+        },
+        "windows.immersivecontrolpanel": {
+            "Name": "windows.immersivecontrolpanel",
+            "Architecture": "Neutral",
+            "Version": "10.0.6.1000",
+            "Publisher": "windows"
+        },
+        "Microsoft.549981C3F5F10": {
+            "Name": "Microsoft.549981C3F5F10",
+            "Architecture": "X64",
+            "Version": "3.2204.14815.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.NET.Native.Framework.2.2": {
+            "Name": "Microsoft.NET.Native.Framework.2.2",
+            "Architecture": "X64",
+            "Version": "2.2.29512.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.NET.Native.Runtime.2.2": {
+            "Name": "Microsoft.NET.Native.Runtime.2.2",
+            "Architecture": "X64",
+            "Version": "2.2.28604.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.VCLibs.140.00.UWPDesktop": {
+            "Name": "Microsoft.VCLibs.140.00.UWPDesktop",
+            "Architecture": "X64",
+            "Version": "14.0.30704.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.ContentDeliveryManager": {
+            "Name": "Microsoft.Windows.ContentDeliveryManager",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.2361",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Getstarted": {
+            "Name": "Microsoft.Getstarted",
+            "Architecture": "X64",
+            "Version": "10.2204.1.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.UI.Xaml.2.7": {
+            "Name": "Microsoft.UI.Xaml.2.7",
+            "Architecture": "X64",
+            "Version": "7.2203.17001.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.VCLibs.140.00": {
+            "Name": "Microsoft.VCLibs.140.00",
+            "Architecture": "X64",
+            "Version": "14.0.30704.0",
+            "Publisher": "Microsoft"
+        },
+        "MicrosoftWindows.Client.WebExperience": {
+            "Name": "MicrosoftWindows.Client.WebExperience",
+            "Architecture": "X64",
+            "Version": "421.20070.195.0",
+            "Publisher": "MicrosoftWindows"
+        },
+        "Microsoft.WindowsStore": {
+            "Name": "Microsoft.WindowsStore",
+            "Architecture": "X64",
+            "Version": "22204.1400.4.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.XboxIdentityProvider": {
+            "Name": "Microsoft.XboxIdentityProvider",
+            "Architecture": "X64",
+            "Version": "12.50.6001.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Paint": {
+            "Name": "Microsoft.Paint",
+            "Architecture": "X64",
+            "Version": "11.2201.22.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.DesktopAppInstaller": {
+            "Name": "Microsoft.DesktopAppInstaller",
+            "Architecture": "X64",
+            "Version": "1.17.10691.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.ZuneMusic": {
+            "Name": "Microsoft.ZuneMusic",
+            "Architecture": "X64",
+            "Version": "11.2202.46.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.WindowsNotepad": {
+            "Name": "Microsoft.WindowsNotepad",
+            "Architecture": "X64",
+            "Version": "11.2112.32.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.ScreenSketch": {
+            "Name": "Microsoft.ScreenSketch",
+            "Architecture": "X64",
+            "Version": "11.2201.12.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.MicrosoftEdge.Stable": {
+            "Name": "Microsoft.MicrosoftEdge.Stable",
+            "Architecture": "Neutral",
+            "Version": "100.0.1185.36",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.AssignedAccessLockApp": {
+            "Name": "Microsoft.Windows.AssignedAccessLockApp",
+            "Architecture": "Neutral",
+            "Version": "1000.22621.1.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.NarratorQuickStart": {
+            "Name": "Microsoft.Windows.NarratorQuickStart",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.1",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.CapturePicker": {
+            "Name": "Microsoft.Windows.CapturePicker",
+            "Architecture": "Neutral",
+            "Version": "10.0.19580.1000",
+            "Publisher": "Microsoft"
+        },
+        "Windows.PrintDialog": {
+            "Name": "Windows.PrintDialog",
+            "Architecture": "Neutral",
+            "Version": "6.2.2.0",
+            "Publisher": "Windows"
+        },
+        "Windows.CBSPreview": {
+            "Name": "Windows.CBSPreview",
+            "Architecture": "Neutral",
+            "Version": "10.0.19580.1000",
+            "Publisher": "Windows"
+        },
+        "NcsiUwpApp": {
+            "Name": "NcsiUwpApp",
+            "Architecture": "Neutral",
+            "Version": "1000.22621.1.0",
+            "Publisher": "NcsiUwpApp"
+        },
+        "Microsoft.XboxGameCallableUI": {
+            "Name": "Microsoft.XboxGameCallableUI",
+            "Architecture": "Neutral",
+            "Version": "1000.22621.1.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.Apprep.ChxApp": {
+            "Name": "Microsoft.Windows.Apprep.ChxApp",
+            "Architecture": "Neutral",
+            "Version": "1000.22621.1.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.MicrosoftEdgeDevToolsClient": {
+            "Name": "Microsoft.MicrosoftEdgeDevToolsClient",
+            "Architecture": "Neutral",
+            "Version": "1000.22621.1.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.ParentalControls": {
+            "Name": "Microsoft.Windows.ParentalControls",
+            "Architecture": "Neutral",
+            "Version": "1000.22621.1.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Win32WebViewHost": {
+            "Name": "Microsoft.Win32WebViewHost",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.1",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.PrintQueueActionCenter": {
+            "Name": "Microsoft.Windows.PrintQueueActionCenter",
+            "Architecture": "Neutral",
+            "Version": "1.0.1.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.XGpuEjectDialog": {
+            "Name": "Microsoft.Windows.XGpuEjectDialog",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.1",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.PeopleExperienceHost": {
+            "Name": "Microsoft.Windows.PeopleExperienceHost",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.1",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.PinningConfirmationDialog": {
+            "Name": "Microsoft.Windows.PinningConfirmationDialog",
+            "Architecture": "Neutral",
+            "Version": "1000.22621.1.0",
+            "Publisher": "Microsoft"
+        },
+        "1527c705-839a-4832-9118-54d4Bd6a0c89": {
+            "Name": "1527c705-839a-4832-9118-54d4Bd6a0c89",
+            "Architecture": "Neutral",
+            "Version": "10.0.19640.1000",
+            "Publisher": "1527c705-839a-4832-9118-54d4Bd6a0c89"
+        },
+        "Microsoft.Windows.SecureAssessmentBrowser": {
+            "Name": "Microsoft.Windows.SecureAssessmentBrowser",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.900",
+            "Publisher": "Microsoft"
+        },
+        "c5e2524a-ea46-4f67-841f-6a9465d9d515": {
+            "Name": "c5e2524a-ea46-4f67-841f-6a9465d9d515",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.1",
+            "Publisher": "c5e2524a-ea46-4f67-841f-6a9465d9d515"
+        },
+        "Microsoft.Windows.CallingShellApp": {
+            "Name": "Microsoft.Windows.CallingShellApp",
+            "Architecture": "Neutral",
+            "Version": "1000.22621.1.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.LockApp": {
+            "Name": "Microsoft.LockApp",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.1",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.ECApp": {
+            "Name": "Microsoft.ECApp",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.1",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.CredDialogHost": {
+            "Name": "Microsoft.CredDialogHost",
+            "Architecture": "Neutral",
+            "Version": "10.0.19595.1001",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.AsyncTextService": {
+            "Name": "Microsoft.AsyncTextService",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.1",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.AccountsControl": {
+            "Name": "Microsoft.AccountsControl",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.1",
+            "Publisher": "Microsoft"
+        },
+        "F46D4000-FD22-4DB4-AC8E-4E1DDDE828FE": {
+            "Name": "F46D4000-FD22-4DB4-AC8E-4E1DDDE828FE",
+            "Architecture": "Neutral",
+            "Version": "10.0.22621.1",
+            "Publisher": "F46D4000-FD22-4DB4-AC8E-4E1DDDE828FE"
+        },
+        "E2A4F912-2574-4A75-9BB0-0D023378592B": {
+            "Name": "E2A4F912-2574-4A75-9BB0-0D023378592B",
+            "Architecture": "Neutral",
+            "Version": "10.0.19640.1000",
+            "Publisher": "E2A4F912-2574-4A75-9BB0-0D023378592B"
+        },
+        "microsoft.windowscommunicationsapps": {
+            "Name": "microsoft.windowscommunicationsapps",
+            "Architecture": "X64",
+            "Version": "16005.14326.20544.0",
+            "Publisher": "microsoft"
+        },
+        "Microsoft.WindowsAlarms": {
+            "Name": "Microsoft.WindowsAlarms",
+            "Architecture": "X64",
+            "Version": "1.0.75.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.WebMediaExtensions": {
+            "Name": "Microsoft.WebMediaExtensions",
+            "Architecture": "X64",
+            "Version": "1.0.42192.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.VP9VideoExtensions": {
+            "Name": "Microsoft.VP9VideoExtensions",
+            "Architecture": "X64",
+            "Version": "1.0.50901.0",
+            "Publisher": "Microsoft"
+        },
+        "MicrosoftCorporationII.QuickAssist": {
+            "Name": "MicrosoftCorporationII.QuickAssist",
+            "Architecture": "X64",
+            "Version": "2.0.5.0",
+            "Publisher": "MicrosoftCorporationII"
+        },
+        "Microsoft.ZuneVideo": {
+            "Name": "Microsoft.ZuneVideo",
+            "Architecture": "X64",
+            "Version": "10.22020.10021.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.YourPhone": {
+            "Name": "Microsoft.YourPhone",
+            "Architecture": "X64",
+            "Version": "0.22022.147.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.XboxSpeechToTextOverlay": {
+            "Name": "Microsoft.XboxSpeechToTextOverlay",
+            "Architecture": "X64",
+            "Version": "1.17.29001.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.XboxGamingOverlay": {
+            "Name": "Microsoft.XboxGamingOverlay",
+            "Architecture": "X64",
+            "Version": "2.622.3232.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.XboxGameOverlay": {
+            "Name": "Microsoft.XboxGameOverlay",
+            "Architecture": "X64",
+            "Version": "1.47.2385.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Xbox.TCUI": {
+            "Name": "Microsoft.Xbox.TCUI",
+            "Architecture": "X64",
+            "Version": "1.23.28004.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.WindowsTerminal": {
+            "Name": "Microsoft.WindowsTerminal",
+            "Architecture": "X64",
+            "Version": "1.12.10983.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.WindowsSoundRecorder": {
+            "Name": "Microsoft.WindowsSoundRecorder",
+            "Architecture": "X64",
+            "Version": "1.0.42.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.WindowsMaps": {
+            "Name": "Microsoft.WindowsMaps",
+            "Architecture": "X64",
+            "Version": "1.0.39.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.WindowsFeedbackHub": {
+            "Name": "Microsoft.WindowsFeedbackHub",
+            "Architecture": "X64",
+            "Version": "1.2201.61.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.WindowsCamera": {
+            "Name": "Microsoft.WindowsCamera",
+            "Architecture": "X64",
+            "Version": "2022.2201.4.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.WindowsCalculator": {
+            "Name": "Microsoft.WindowsCalculator",
+            "Architecture": "X64",
+            "Version": "10.2103.8.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.UI.Xaml.2.4": {
+            "Name": "Microsoft.UI.Xaml.2.4",
+            "Architecture": "X64",
+            "Version": "2.42007.9001.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Windows.Photos": {
+            "Name": "Microsoft.Windows.Photos",
+            "Architecture": "X64",
+            "Version": "21.21030.25003.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.WebpImageExtension": {
+            "Name": "Microsoft.WebpImageExtension",
+            "Architecture": "X64",
+            "Version": "1.0.42351.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.Todos": {
+            "Name": "Microsoft.Todos",
+            "Architecture": "X64",
+            "Version": "0.54.42772.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.StorePurchaseApp": {
+            "Name": "Microsoft.StorePurchaseApp",
+            "Architecture": "X64",
+            "Version": "12008.1001.1.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.SecHealthUI": {
+            "Name": "Microsoft.SecHealthUI",
+            "Architecture": "X64",
+            "Version": "1000.22621.1.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.RawImageExtension": {
+            "Name": "Microsoft.RawImageExtension",
+            "Architecture": "X64",
+            "Version": "2.1.30391.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.PowerAutomateDesktop": {
+            "Name": "Microsoft.PowerAutomateDesktop",
+            "Architecture": "X64",
+            "Version": "1.0.219.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.People": {
+            "Name": "Microsoft.People",
+            "Architecture": "X64",
+            "Version": "10.1909.12456.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.MicrosoftStickyNotes": {
+            "Name": "Microsoft.MicrosoftStickyNotes",
+            "Architecture": "X64",
+            "Version": "4.0.422.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.MicrosoftSolitaireCollection": {
+            "Name": "Microsoft.MicrosoftSolitaireCollection",
+            "Architecture": "X64",
+            "Version": "4.12.3171.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.MicrosoftOfficeHub": {
+            "Name": "Microsoft.MicrosoftOfficeHub",
+            "Architecture": "X64",
+            "Version": "18.2204.1141.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.HEVCVideoExtension": {
+            "Name": "Microsoft.HEVCVideoExtension",
+            "Architecture": "X64",
+            "Version": "1.0.50361.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.HEIFImageExtension": {
+            "Name": "Microsoft.HEIFImageExtension",
+            "Architecture": "X64",
+            "Version": "1.0.43012.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.GetHelp": {
+            "Name": "Microsoft.GetHelp",
+            "Architecture": "X64",
+            "Version": "10.2201.421.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.GamingApp": {
+            "Name": "Microsoft.GamingApp",
+            "Architecture": "X64",
+            "Version": "2105.900.24.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.BingWeather": {
+            "Name": "Microsoft.BingWeather",
+            "Architecture": "X64",
+            "Version": "1.0.6.0",
+            "Publisher": "Microsoft"
+        },
+        "Microsoft.BingNews": {
+            "Name": "Microsoft.BingNews",
+            "Architecture": "X64",
+            "Version": "1.0.1.0",
+            "Publisher": "Microsoft"
+        },
+        "Clipchamp.Clipchamp": {
+            "Name": "Clipchamp.Clipchamp",
+            "Architecture": "Neutral",
+            "Version": "2.2.8.0",
+            "Publisher": "Clipchamp"
+        }
+    }
+}

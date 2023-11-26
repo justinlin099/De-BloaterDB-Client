@@ -194,5 +194,19 @@
         "bloatRating": 1,
         "necessary": false,
         "bloatReason": "微軟收購的影片剪輯軟體，且內部有付費選項，功能也較陽春，如果不需要可以移除節省硬碟空間"
+    },
+    {
+        "appName": "Outlook for Windows",
+        "appShortName": "Microsoft.OutlookForWindows",
+        "appDescription": "Unknown",
+        "developerName": "Microsoft",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "Microsoft.OutlookForWindows",
+        "uninstallPath": "Microsoft.OutlookForWindows",
+        "appPath": "Microsoft.OutlookForWindows",
+        "bloatRating": 1,
+        "necessary": false,
+        "bloatReason": "Windows 內建的電子郵件收發軟體，不需要使用的話可以移除以節省硬碟空間。"
     }
 ]
