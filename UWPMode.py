@@ -7,3 +7,4 @@ import json
 import subprocess
 import UWPScanner
 
+UWPList = UWPScanner.ScanUWP()

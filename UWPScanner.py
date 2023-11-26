@@ -1,5 +1,5 @@
 import subprocess
-DebugMode = True
+DebugMode = False
 
 
 def ScanUWP():
@@ -29,8 +29,31 @@ def processData(rawData):
     uwpAppList["InstallDate"]=getInstallDate()
     uwpAppList["Manufacturer"]=getManufacturer()
     uwpAppList["Memory"]=getMemory()
+    uwpAppList["UWPApps"]={}
     
-    
+    for i in range(len(rawData)):
+        #判斷是否為應用程式名稱
+        if rawData[i][0:4]=="Name":
+            #取得應用程式名稱
+            uwpAppName=rawData[i][20:-2]
+            #建立應用程式名稱的字典
+            uwpAppList["UWPApps"][uwpAppName]={}
+            #建立應用程式名稱的字典的應用程式名稱鍵值
+            uwpAppList["UWPApps"][uwpAppName]["Name"]=uwpAppName
+            
+            #取得應用程式架構
+            uwpAppArchitecture=rawData[i+2][20:-2]
+            uwpAppList["UWPApps"][uwpAppName]["Architecture"]=uwpAppArchitecture
+            
+            #取得應用程式版本
+            uwpAppVersion=rawData[i+4][20:-2]
+            uwpAppList["UWPApps"][uwpAppName]["Version"]=uwpAppVersion
+            
+            #取得應用程式發行者
+            nameSplit=uwpAppName.split(".")
+            uwpAppPublisher=nameSplit[0]
+            uwpAppList["UWPApps"][uwpAppName]["Publisher"]=uwpAppPublisher
+        
     if DebugMode:
         print(uwpAppList)
     
