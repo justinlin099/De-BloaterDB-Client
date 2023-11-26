@@ -1,7 +1,4 @@
-import os
 import json
-import tkinter as tk
-from tkinter import filedialog
 import UWPScanner
 
 #掃描標準 UWP 並記錄

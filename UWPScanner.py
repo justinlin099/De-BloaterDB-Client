@@ -78,10 +78,10 @@ def getInstallDate():
     return InstallDate
 
 def getManufacturer():
-    ManufacturerOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', '(Get-ItemProperty Registry::HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS\).BaseBoardManufacturer'], stdout=subprocess.PIPE)
-    for line in ManufacturerOut.stdout:
-        Manufacturer=line.decode('utf-8')
-    return Manufacturer[:-2]
+    manufacturerOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', '(Get-ItemProperty Registry::HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS\).BaseBoardManufacturer'], stdout=subprocess.PIPE)
+    for line in manufacturerOut.stdout:
+        manufacturer=line.decode('utf-8')
+    return manufacturer[:-2]
 
 def getMemory():
     MemoryTypeOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'wmic memorychip get SMBIOSMemoryType'], stdout=subprocess.PIPE)
