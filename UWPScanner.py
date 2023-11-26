@@ -79,6 +79,7 @@ def getInstallDate():
 
 def getManufacturer():
     manufacturerOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', '(Get-ItemProperty Registry::HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS\).BaseBoardManufacturer'], stdout=subprocess.PIPE)
+    manufacturer=""
     for line in manufacturerOut.stdout:
         manufacturer=line.decode('utf-8')
     return manufacturer[:-2]
