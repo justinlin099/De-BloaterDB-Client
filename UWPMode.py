@@ -26,7 +26,7 @@ def writeBloatDB(writeList):
 def readBloatDB():
     #選取要讀取DB的路徑
     global openPath
-    openPath = filedialog.askopenfilename(title="選取要讀取DB的路徑",filetypes=[("JSON","*.json")])
+    openPath = filedialog.askopenfilename(title="選取要讀取DB的路徑",filetypes=[("JSON","BloatDB.json")])
     if openPath != "":
         with open(openPath, "r",encoding="utf8") as bloatDB:
             writeList=json.load(bloatDB)
@@ -36,8 +36,17 @@ def readBloatDB():
         readBloatDB()
 
 UWPList = UWPScanner.ScanUWP()
-with open("refDB.json", "r",encoding="utf8") as refFile:
-    refList=json.load(refFile)
+
+#開啟對照用 DB
+try:
+    with open("refDB.json", "r",encoding="utf8") as refFile:
+        refList=json.load(refFile)
+except:
+    print("refDB.json不存在")
+    refPath = filedialog.askopenfilename(title="手動選取 refDB.json 的路徑",filetypes=[("JSON","refDB.json")])
+    with open(refPath, "r",encoding="utf8") as refFile:
+        refList=json.load(refFile)
+    
     
 writeList = readBloatDB()
 #比較 UWP 應用程式清單，找出refDB.json中沒有的應用程式
