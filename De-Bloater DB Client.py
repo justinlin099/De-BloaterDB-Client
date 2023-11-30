@@ -338,13 +338,7 @@ def gotoSettings():
     y_cordinate = int((screen_height/2) - (window_height/2))
     settingsScreen.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
 
-# 取得 Windows 縮放比例並且算出倍率
-def getZoomValue():
-    # 取得 Windows 縮放比例
-    zoomValue = subprocess.check_output("powershell.exe (Get-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name AppliedDPI).AppliedDPI", shell=True).decode("utf-8").strip()
-    # 計算倍率
-    zoomValue = int(zoomValue)/96*1.35
-    return zoomValue
+
     
 
 # 主程式
