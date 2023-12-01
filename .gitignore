@@ -9,3 +9,5 @@ build/*.*
 build/De-bloater DB Client/warn-De-bloater DB Client.txt
 De-bloater DB Client.exe
 dist/De-Bloater DB Client.exe
+data/config.json
+dist/data/config.json
