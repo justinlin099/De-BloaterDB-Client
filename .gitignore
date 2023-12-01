@@ -6,3 +6,6 @@ __pycache__/UWPScanner.cpython-311.pyc
 build/*.*
 *.toc
 *.pkg
+build/De-bloater DB Client/warn-De-bloater DB Client.txt
+De-bloater DB Client.exe
+dist/De-Bloater DB Client.exe

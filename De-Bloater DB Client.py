@@ -1,7 +1,6 @@
 # Debloater DB Client
 # Version: v0.1.1-alpha
 # 待修復問題:
-# 1. wm errors
 # 2. 網路連線的例外處理
 # 3. config.json 不存在時的例外處理
 # 待新增功能：
@@ -25,7 +24,7 @@ import DBDBERes
 from ctypes import windll
 from ttkbootstrap import utility
 
-VERSION = "v0.1.1-alpha"
+VERSION = "v0.1.2-alpha"
 
 
 
@@ -51,6 +50,9 @@ def set_appwindow():
         root.withdraw()
         root.after(10, lambda:root.wm_deiconify())
         hasstyle=True
+
+def quit():
+    root.destroy()
 
 def minimize(hide=False):
     hwnd = windll.user32.GetParent(root.winfo_id())
@@ -268,15 +270,18 @@ def getBloatDB():
         
     startUpScreen.withdraw()
     root.deiconify()
+    root.attributes('-alpha', 1)
     return bloatDB
 
 def createStartUpScreen(root):
     global startUpScreen, startProgressbar, progressLabel
     
     root.withdraw()
+    
     # StartUp Screen
     startUpScreen = ttk.Toplevel(root, topmost=True)
     startUpScreen.title("De-Bloater DB 預裝軟體移除器")
+    startUpScreen.iconphoto(False, iconPic)
 
     iconPicStart = ttk.PhotoImage(data=base64.b64decode(DBDBERes.icon))
     iconPicStart = iconPicStart.subsample(4)
@@ -320,6 +325,8 @@ def createStartUpScreen(root):
     
     startUpScreen.mainloop()
     
+    
+    
 def gotoHelp():
     #開啟瀏覽器至GitHub專案https://github.com/justinlin099/De-BloaterDB-Client/wiki
     import webbrowser    
@@ -342,8 +349,20 @@ def gotoSettings():
     
 
 # 主程式
-root=ttk.Window(themename=themeName)
+root=ttk.Window(themename=themeName, alpha=0)
+
+iconPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.icon))
+root.iconphoto(False, iconPic)
+titleBarIcon = iconPic.subsample(20)
+
+
+#remove titlebar
+root.overrideredirect(True)
+
+#設定縮放
 utility.enable_high_dpi_awareness(root,2.25) 
+
+
 root.title("De-Bloater DB 預裝軟體移除器")
 root.wm_attributes("-topmost", 1)
 window_height = 1024
@@ -355,8 +374,7 @@ x_cordinate = int((screen_width/2) - (window_width/2))
 y_cordinate = int((screen_height/2) - (window_height/2))
 root.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
 
-#remove titlebar
-root.overrideredirect(True)
+
 
 def SaveLastClickPos(event):
     global lastClickX, lastClickY
@@ -383,17 +401,16 @@ titleFrame.bind('<B1-Motion>', Dragging)
 titleBarButton=ttk.Frame(titleFrame, bootstyle="info")
 titleBarButton.pack(side="right",  padx=20, pady=20)
 
-iconPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.icon))
-iconPic = iconPic.subsample(20)
+
 # 標題標籤
-titleIcon = ttk.Label(titleBar, image=iconPic, bootstyle="inverse-info")
+titleIcon = ttk.Label(titleBar, image=titleBarIcon, bootstyle="inverse-info")
 titleIcon.grid(row=0, column=0, sticky="w", padx=10, pady=10)
 subTitleLabel = ttk.Label(titleBar, text="預裝軟體移除器", font=("微軟正黑體", 10), bootstyle="inverse-info")
 subTitleLabel.grid(row=0, column=1, sticky="w")
 
 
 #關閉視窗按鈕
-closeButton = ttk.Button(titleBarButton, text="✕", command=root.destroy, bootstyle="danger")
+closeButton = ttk.Button(titleBarButton, text="✕", command=quit, bootstyle="danger")
 closeButton.grid(row=0, column=5, sticky="e",ipadx=20)
 #最小化按鈕
 minimizeButton = ttk.Button(titleBarButton, text="__", command=minimize, bootstyle="info")
@@ -471,7 +488,7 @@ reportButton.pack(side="top", padx=30, pady=10, fill="both", expand=True)
 reportButton["state"] = "disabled"
 
 
-createStartUpScreen(root)
+
 
 
 
@@ -486,6 +503,9 @@ hasstyle = False
 root.update_idletasks()
 root.withdraw()
 set_appwindow()
+
+#SetupScreen
+createStartUpScreen(root)
 
 root.mainloop()
     
