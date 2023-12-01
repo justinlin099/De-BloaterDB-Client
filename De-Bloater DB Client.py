@@ -465,9 +465,11 @@ y_cordinate = int((screen_height/2) - (window_height/2))
 root.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
 
 iconPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.icon))
-#root.iconphoto(1, iconPic)
-root.iconbitmap("icon.ico")
-root.iconbitmap(default="icon.ico")
+
+root.iconphoto(False, iconPic)
+root.iconphoto(True, iconPic)
+# root.iconbitmap(DBDBERes.iconico)
+# root.iconbitmap(default=DBDBERes.iconico)
 titleBarIcon = iconPic.subsample(20)
 
 
