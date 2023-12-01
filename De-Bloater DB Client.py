@@ -15,7 +15,7 @@ import time
 import UWPScanner
 import tkinter as tk
 from tkinter import filedialog
-from PIL import Image,ImageTk
+from PIL import Image
 Image.CUBIC = Image.BICUBIC
 import ttkbootstrap as ttk
 import requests
@@ -115,6 +115,13 @@ def getHardwareInfo():
     # 取得記憶體通道數
     hardwareInfo["memoryChannel"] = subprocess.check_output("wmic memorychip get memorytype", shell=False, creationflags = subprocess.CREATE_NO_WINDOW).decode("utf-8").split("\r\r\n")[1:-2]
     
+    if __debugMode:
+        print(hardwareInfo)
+        global debugMessage
+        debugMessage+="\n"+str(hardwareInfo)
+        consoleText.config(text=debugMessage)
+    
+    
     #更新電腦製造商Logo
     global manufacturerPic
     if getThemeMode(themeName)=="b":
@@ -147,19 +154,24 @@ def getHardwareInfo():
         memoryInfoText+="\n\t記憶體插槽"+str(memoryIndex)+": "+str(int(hardwareInfo["memoryCapacity"][memoryIndex-1])//(1024**3))+"GB " +memory+"SN:"+hardwareInfo["serialNumber"][memoryIndex-1]
         memoryIndex+=1
     ramLabel.config(text="系統記憶體: "+hardwareInfo["ram"]["String"]+memoryInfoText)
+    try:
+        gpuLabel.config(text="圖形處理器: "+hardwareInfo["gpu"]+" "+str(round(int(hardwareInfo["vram"])/(1024**3),1))+"GB")
+    except:
+        hardwareInfo["gpu"] = subprocess.check_output("wmic path win32_VideoController get name", shell=False, creationflags = subprocess.CREATE_NO_WINDOW).decode("utf-8").split("\n")[-3].strip()
+        hardwareInfo["vram"] = subprocess.check_output("wmic path win32_VideoController get AdapterRAM", shell=False, creationflags = subprocess.CREATE_NO_WINDOW).decode("utf-8").split("\n")[-3].strip()
+        try:
+            gpuLabel.config(text="圖形處理器: "+hardwareInfo["gpu"]+" "+str(round(int(hardwareInfo["vram"])/(1024**3),1))+"GB")
+        except:
+            gpuLabel.config(text="圖形處理器: "+hardwareInfo["gpu"])
     
-    gpuLabel.config(text="圖形處理器: "+hardwareInfo["gpu"]+" "+str(round(int(hardwareInfo["vram"])/(1024**3),1))+"GB")
+    
     hardDiskLabel.config(text="硬碟存儲器: "+hardwareInfo["hdd"])
     osLabel.config(text="作業系統: "+hardwareInfo["os"])
     osInstallDateLabel.config(text="安裝日期: "+hardwareInfo["installDate"][0:4]+"年"+hardwareInfo["installDate"][4:6]+"月"+hardwareInfo["installDate"][6:8]+"日 "+hardwareInfo["installDate"][8:10]+":"+hardwareInfo["installDate"][10:12]+":"+hardwareInfo["installDate"][12:14])
     #bios標籤(含製造商及版本)
     biosLabel.config(text="BIOS: v"+hardwareInfo["bios"]+" ("+hardwareInfo["biosManufacturer"]+")")
     
-    if __debugMode:
-        print(hardwareInfo)
-        global debugMessage
-        debugMessage+="\n"+str(hardwareInfo)
-        consoleText.config(text=debugMessage)
+    
         
     return hardwareInfo
 
