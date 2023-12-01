@@ -8,7 +8,7 @@ def ScanUWP():
     rawData = []
 
     #執行Powershell指令並且擷取輸出字串
-    process = subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'Get-AppxPackage'], stdout=subprocess.PIPE)
+    process = subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'Get-AppxPackage'], stdout=subprocess.PIPE, creationflags = subprocess.CREATE_NO_WINDOW)
 
     for line in process.stdout:
         rawData.append(line.decode('utf-8'))
@@ -60,13 +60,13 @@ def processData(rawData):
     return uwpAppList
     
 def getProcessor():
-    CPUNameOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', '(Get-ItemProperty Registry::HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\CentralProcessor\\0\).ProcessorNameString'], stdout=subprocess.PIPE)
+    CPUNameOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', '(Get-ItemProperty Registry::HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\CentralProcessor\\0\).ProcessorNameString'], stdout=subprocess.PIPE, creationflags = subprocess.CREATE_NO_WINDOW)
     for line in CPUNameOut.stdout:
         CPUName=line.decode('utf-8')
     return CPUName[:-2]
 
 def getInstallDate():
-    InstallDateOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'wmic OS get InstallDate'], stdout=subprocess.PIPE)
+    InstallDateOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'wmic OS get InstallDate'], stdout=subprocess.PIPE, creationflags = subprocess.CREATE_NO_WINDOW)
     InstallDateRaw=[]
     for line in InstallDateOut.stdout:
         InstallDateRaw.append(line.decode('utf-8'))
@@ -78,14 +78,14 @@ def getInstallDate():
     return InstallDate
 
 def getManufacturer():
-    manufacturerOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', '(Get-ItemProperty Registry::HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS\).BaseBoardManufacturer'], stdout=subprocess.PIPE)
+    manufacturerOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', '(Get-ItemProperty Registry::HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS\).BaseBoardManufacturer'], stdout=subprocess.PIPE, creationflags = subprocess.CREATE_NO_WINDOW)
     manufacturer=""
     for line in manufacturerOut.stdout:
         manufacturer=line.decode('utf-8')
     return manufacturer[:-2]
 
 def getMemory():
-    MemoryTypeOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'wmic memorychip get SMBIOSMemoryType'], stdout=subprocess.PIPE)
+    MemoryTypeOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'wmic memorychip get SMBIOSMemoryType'], stdout=subprocess.PIPE, creationflags = subprocess.CREATE_NO_WINDOW)
     MemoryTypeRaw=[]
     for line in MemoryTypeOut.stdout:
         MemoryTypeRaw.append(line.decode('utf-8'))
@@ -105,7 +105,7 @@ def getMemory():
     Memory["Type"]=MemoryType
     
     #detect memory speed
-    MemorySpeedOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'wmic memorychip get Speed'], stdout=subprocess.PIPE)
+    MemorySpeedOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'wmic memorychip get Speed'], stdout=subprocess.PIPE, creationflags = subprocess.CREATE_NO_WINDOW)
     MemorySpeedRaw=[]
     for line in MemorySpeedOut.stdout:
         MemorySpeedRaw.append(line.decode('utf-8'))
@@ -113,7 +113,7 @@ def getMemory():
     Memory["Speed"]=MemorySpeed
     
     #calculate memory size
-    MemorySizeOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'wmic memorychip get Capacity'], stdout=subprocess.PIPE)
+    MemorySizeOut=subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'wmic memorychip get Capacity'], stdout=subprocess.PIPE, creationflags = subprocess.CREATE_NO_WINDOW)
     MemorySizeRaw=[]
     for line in MemorySizeOut.stdout:
         MemorySizeRaw.append(line.decode('utf-8'))
