@@ -7,25 +7,98 @@
 # 2. 查看報表
 # 3. 匯出報表
 import base64
-import os
+from pathlib import Path
 import json
 import subprocess
 import threading
 import time
 import UWPScanner
-import tkinter as tk
-from tkinter import filedialog
 from PIL import Image
 Image.CUBIC = Image.BICUBIC
 import ttkbootstrap as ttk
 import requests
 import DBDBERes
 from ctypes import windll
-from ttkbootstrap import utility,scrolled
+from ttkbootstrap import scrolled
 debugMessage=""
+appTiles=[]
 
 VERSION = "v0.1.2-alpha"
 
+class uwpAppTile():
+    def __init__(self,appName,developerName,appDescription,appType,appPath,installPath,uninstallPath,appShortName,developerURL,bloatRating,necessary,bloatReason):
+        self.appName=appName
+        self.developerName=developerName
+        self.appDescription=appDescription
+        self.appType=appType
+        self.appPath=appPath
+        self.installPath=installPath
+        self.uninstallPath=uninstallPath
+        self.appShortName=appShortName
+        self.developerURL=developerURL
+        self.bloatRating=bloatRating
+        self.necessary=necessary
+        self.bloatReason=bloatReason
+        
+    def pack(self,root):
+        if getThemeMode(themeName)=="b":
+            frameStyle="light"
+            style="inverse-light"
+        else:
+            frameStyle="dark"
+            style="inverse-dark"
+        tile=ttk.Frame(root,bootstyle=frameStyle)
+        tile.pack(side="top",fill="x",padx=int(20*getZoomValue()//1.75),pady=int(10*getZoomValue()//1.75))
+        if self.bloatRating>=5:
+            bloatRatingColorLabel=ttk.Frame(tile,bootstyle="danger")
+        elif self.bloatRating>=1:
+            bloatRatingColorLabel=ttk.Frame(tile,bootstyle="warning")
+        else:
+            bloatRatingColorLabel=ttk.Frame(tile,bootstyle="success")
+        bloatRatingColorLabel.pack(side="bottom",fill="x",expand=True,ipadx=int(10*getZoomValue()//1.75),ipady=int(10*getZoomValue()//1.75))
+        titleFrame=ttk.Frame(tile,bootstyle=frameStyle)
+        titleFrame.pack(side="top",fill="both",expand=True,padx=int(20*getZoomValue()//1.75),pady=int(10*getZoomValue()//1.75))
+        tileTitle=ttk.Label(titleFrame,text=self.appName,font=("微軟正黑體", 12),bootstyle=style)
+        tileTitle.grid(row=0,column=0,sticky="w")
+        if self.appType=="UWP":
+            subTitle = ttk.Label(titleFrame,text=self.installPath,font=("微軟正黑體", 8),bootstyle=style)
+            subTitle.grid(row=1,column=0,sticky="w")
+        else:
+            subTitle = ttk.Label(titleFrame,text=self.uninstallPath,font=("微軟正黑體", 8),bootstyle=style)
+            subTitle.grid(row=1,column=0,sticky="w")
+        tileDescription=ttk.Label(tile,text=self.bloatReason,font=("微軟正黑體", 8),bootstyle=style, wraplength=int(900*getZoomValue()//1.75))
+        tileDescription.pack(side="top",fill="both",expand=True,padx=int(20*getZoomValue()//1.75),pady=int(10*getZoomValue()//1.75))
+        #bloatrating label
+        if self.bloatRating>=5:
+            bloatRatingLabel = ttk.Label(bloatRatingColorLabel,text=str(self.bloatRating)+" (強烈建議移除)",font=("微軟正黑體", 12),bootstyle="inverse-danger")
+        elif self.bloatRating>=3:
+            bloatRatingLabel = ttk.Label(bloatRatingColorLabel,text=str(self.bloatRating)+" (建議移除)",font=("微軟正黑體", 12),bootstyle="inverse-warning")   
+        elif self.bloatRating>=1:
+            bloatRatingLabel = ttk.Label(bloatRatingColorLabel,text=str(self.bloatRating)+" (不須使用可移除)",font=("微軟正黑體", 12),bootstyle="inverse-warning")
+        else:
+            bloatRatingLabel = ttk.Label(bloatRatingColorLabel,text=str(self.bloatRating)+" (不須移除)",font=("微軟正黑體", 12),bootstyle="inverse-success")
+        bloatRatingLabel.pack(side="left",fill="both",expand=True,padx=int(20*getZoomValue()//1.75))
+        #checkbutton
+        self.tileCheckButton=ttk.Checkbutton(bloatRatingColorLabel, text="移除", variable=ttk.BooleanVar(), bootstyle="toolbutton-danger")
+        self.tileCheckButton.pack(side="right",padx=int(20*getZoomValue()//1.75))
+        #根據是否為必要軟體，決定是否勾選checkbutton
+        if self.necessary:
+            self.tileCheckButton.state(["!selected"])
+        elif not self.necessary and self.bloatRating>=1:
+            self.tileCheckButton.state(["selected"])
+    
+    def uninstall(self):
+        # 取得按鈕狀態
+        if self.tileCheckButton.instate(["selected"]):
+            # 移除
+            if self.appType=="UWP":
+                subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'Get-AppxPackage '+self.installPath+' | Remove-AppxPackage'], stdout=subprocess.PIPE, creationflags = subprocess.CREATE_NO_WINDOW)
+            else:
+                subprocess.Popen(self.uninstallPath, stdout=subprocess.PIPE, creationflags = subprocess.CREATE_NO_WINDOW)
+        
+            
+            
+            
 def getThemeMode(themeName):
     if themeName=="cosmo" or themeName=="flatly" or themeName=="journal" or themeName=="litera" or themeName=="lumen" or themeName=="minty" or themeName=="pulse" or themeName=="sandstone" or themeName=="simplex"  or themeName=="united" or themeName=="yeti" or themeName=="morph" or themeName=="cerculean":
         return "b"
@@ -33,7 +106,8 @@ def getThemeMode(themeName):
         return "w"
 
 def loadConfig():
-    try:
+    configPath = Path('data/config.json')
+    if configPath.exists():
         with open("data/config.json", "r",encoding="utf8") as configFile:
             config=json.load(configFile)
             global __debugMode, themeName, tag
@@ -41,14 +115,12 @@ def loadConfig():
             themeName = config["themeName"]
             tag = config["tag"]
             return config
-    except:# 例外處理新增 config.json
-        try:
-            os.mkdir("data")
-        finally:
-            with open("data/config.json", "w+",encoding="utf8") as configFile:
-                config={"debugMode":False,"themeName":"cosmo","tag":"Unknown"}
-                json.dump(config, configFile, indent=4, ensure_ascii=False)
-            loadConfig()
+    else:
+        configPath.parent.mkdir(parents=True, exist_ok=True)
+        with open("data/config.json", "w+",encoding="utf8") as configFile:
+            config={"debugMode":False,"themeName":"cosmo","tag":"Unknown"}
+            json.dump(config, configFile, indent=4, ensure_ascii=False)
+        loadConfig()
 
 
 #自訂視窗 Code
@@ -87,7 +159,7 @@ def getHardwareInfo():
     #取得電腦的硬碟型號
     hardwareInfo["hdd"] = subprocess.check_output("wmic diskdrive get model", shell=False, creationflags = subprocess.CREATE_NO_WINDOW).decode("utf-8").split("\n")[1].strip()
     #取得電腦的顯示卡
-    hardwareInfo["gpu"] = subprocess.check_output("wmic path win32_VideoController get name", shell=False, creationflags = subprocess.CREATE_NO_WINDOW).decode("utf-8").split("\n")[1].strip()
+    hardwareInfo["gpu"] = subprocess.check_output("wmic path win32_VideoController get name", shell=False, creationflags = subprocess.CREATE_NO_WINDOW).decode("big5").split("\n")[1].strip()
     #取得電腦的製造商
     hardwareInfo["manufacturer"] = subprocess.check_output("wmic computersystem get manufacturer", shell=False, creationflags = subprocess.CREATE_NO_WINDOW).decode("utf-8").split("\n")[1].strip()
     #取得顯示卡記憶體
@@ -161,7 +233,7 @@ def getHardwareInfo():
     try:
         gpuLabel.config(text="圖形處理器: "+hardwareInfo["gpu"]+" "+str(round(int(hardwareInfo["vram"])/(1024**3),1))+"GB")
     except:
-        hardwareInfo["gpu"] = subprocess.check_output("wmic path win32_VideoController get name", shell=False, creationflags = subprocess.CREATE_NO_WINDOW).decode("utf-8").split("\n")[-3].strip()
+        hardwareInfo["gpu"] = subprocess.check_output("wmic path win32_VideoController get name", shell=False, creationflags = subprocess.CREATE_NO_WINDOW).decode("big5").split("\n")[-3].strip()
         hardwareInfo["vram"] = subprocess.check_output("wmic path win32_VideoController get AdapterRAM", shell=False, creationflags = subprocess.CREATE_NO_WINDOW).decode("utf-8").split("\n")[-3].strip()
         try:
             gpuLabel.config(text="圖形處理器: "+hardwareInfo["gpu"]+" "+str(round(int(hardwareInfo["vram"])/(1024**3),1))+"GB")
@@ -187,6 +259,8 @@ def scanBloatware():
     meter["subtext"]="正在掃描..."
     myUWPList = UWPScanner.ScanUWP()
     #scan UWP
+    global appTiles
+    appTiles=[]
     for app in bloatDB:
         global debugMessage
         if(app["installPath"] in myUWPList["UWPApps"]):
@@ -202,18 +276,46 @@ def scanBloatware():
                     debugMessage+="\ndeduct "+str(app["bloatRating"])+" points from "+app["appName"]
                     consoleText.config(text=debugMessage)
                     print("\ndeduct "+str(app["bloatRating"])+" points from "+app["appName"])
-                
+            
+            appTiles.append(uwpAppTile(app["appName"],app["developerName"],app["appDescription"],app["appType"],app["appPath"],app["installPath"],app["uninstallPath"],app["appShortName"],app["developerURL"],app["bloatRating"],app["necessary"],app["bloatReason"]))
+            
             meter.update()
             time.sleep(0.1)
+        
+        #scan desktop app
+        elif app["appType"]=="Desktop":
+            path = Path(app["installPath"])
+            if path.exists():
+                if __debugMode:
+                    debugMessage+="\n找到預裝軟體："+app["appName"]
+                    consoleText.config(text=debugMessage)
+                    print("找到預裝軟體："+app["appName"])
+                meter.step(app["bloatRating"])
+                if __debugMode:
+                    debugMessage+="\ndeduct "+str(app["bloatRating"])+" points from "+app["appName"]
+                    consoleText.config(text=debugMessage)
+                    print("\ndeduct "+str(app["bloatRating"])+" points from "+app["appName"])
+                if app["uninstallPath"].find("*")!=-1:
+                    uninstallPath=app["uninstallPath"].split("*")
+                    uninstallBase=Path(uninstallPath[0])
+                    for folder in uninstallBase.iterdir():
+                        if folder.is_dir():
+                            if Path(str(folder)+uninstallPath[1]).exists():
+                                app["uninstallPath"]=str(folder)+uninstallPath[1]
+                                break
+                    
+                appTiles.append(uwpAppTile(app["appName"],app["developerName"],app["appDescription"],app["appType"],app["appPath"],app["installPath"],app["uninstallPath"],app["appShortName"],app["developerURL"],app["bloatRating"],app["necessary"],app["bloatReason"]))
+                meter.update()
+                time.sleep(0.1)
             
     
     meter["subtext"]="掃描完成!"
+    
+    
         
     
     #meter.config(subtext="掃描完成!", textright="分")
 
-def some_function(x, y):
-    time.sleep(10)
     
 def scanbtn_function():
     x = 100
@@ -251,6 +353,7 @@ def update_progressbar(thread):
         # unblock button
         scanButton['state'] = 'normal'
         reportButton['state'] = 'normal'
+        gotoReport()
         
 
 #更新定義檔版本標籤
@@ -388,11 +491,11 @@ def createStartUpScreen(root):
     
 
     iconPicStart = ttk.PhotoImage(data=base64.b64decode(DBDBERes.icon))
-    iconPicStart = iconPicStart.subsample(4)
+    iconPicStart = iconPicStart.subsample(int(1.75*4//zoomValue))
 
 
-    start_height = 450
-    start_width = 600
+    start_height = int(450*zoomValue//1.75)
+    start_width = int(600*zoomValue//1.75)
     screen_width = startUpScreen.winfo_screenwidth()
     screen_height = startUpScreen.winfo_screenheight()
         # Coordinates of the upper left corner of the window to make the window appear in the center
@@ -401,27 +504,27 @@ def createStartUpScreen(root):
     startUpScreen.geometry("{}x{}+{}+{}".format(start_width, start_height, x_cordinate, y_cordinate))
     startUpScreen.overrideredirect(True)
     startFrame = ttk.Frame(startUpScreen)
-    startFrame.pack(fill="both", padx=30, pady=30, expand=True)
+    startFrame.pack(fill="both", padx=int(30*zoomValue//1.75), pady=int(30*zoomValue//1.75), expand=True)
     labelFrame = ttk.Frame(startFrame)
     labelFrame.pack(fill="both", expand=True)
     
     startIcon = ttk.Label(labelFrame, image=iconPicStart)
-    startIcon.grid(row=0, column=0, sticky="w", padx=10, pady=10)
+    startIcon.grid(row=0, column=0, sticky="w", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
 
     startTitleLabel = ttk.Label(labelFrame, text="De-Bloater DB", font=("微軟正黑體", 25))
-    startTitleLabel.grid(row=1, column=0, sticky="w", padx=10)
+    startTitleLabel.grid(row=1, column=0, sticky="w", padx=int(10*zoomValue//1.75))
     startSubTitleLabel=ttk.Label(labelFrame, text="預裝軟體移除器", font=("微軟正黑體", 10))
-    startSubTitleLabel.grid(row=2, column=0, sticky="w", padx=10)
+    startSubTitleLabel.grid(row=2, column=0, sticky="w", padx=int(10*zoomValue//1.75))
     startSubTitleLabel=ttk.Label(labelFrame, text="軟體版本："+VERSION, font=("微軟正黑體", 8), bootstyle="secondary")
-    startSubTitleLabel.grid(row=3, column=0, sticky="w", padx=10)
+    startSubTitleLabel.grid(row=3, column=0, sticky="w", padx=int(10*zoomValue//1.75))
     
     #progressLabel
     progressLabel = ttk.Label(startFrame, text="正在檢查 Bloatware 定義檔...", font=("微軟正黑體", 8), bootstyle="primary")
-    progressLabel.pack(side="bottom",padx=10,fill="x")
+    progressLabel.pack(side="bottom",padx=int(10*zoomValue//1.75),fill="x")
 
     #progressbar
     startProgressbar = ttk.Progressbar(startFrame, orient="horizontal", mode="determinate", maximum=100, value=0)
-    startProgressbar.pack(side="bottom",padx=10,fill="x")
+    startProgressbar.pack(side="bottom",padx=int(10*zoomValue//1.75),fill="x")
     
     
     global bloatDB
@@ -455,6 +558,71 @@ def gotoSettings():
     # y_cordinate = int((screen_height/2) - (window_height/2))
     # settingsScreen.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
     # settingsScreen.iconphoto(False, iconPic)
+    
+def gotoReport():
+    global reportPage
+    reportPage = ttk.Toplevel(root)
+    #reportPage.overrideredirect(True)
+    reportPage.title("掃描結果")
+    window_height = int(768*zoomValue//1.75)
+    window_width = int(1024*zoomValue//1.75)
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+        # Coordinates of the upper left corner of the window to make the window appear in the center
+    x_cordinate = int((screen_width/2) - (window_width/2))
+    y_cordinate = int((screen_height/2) - (window_height/2))
+    reportPage.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
+    reportPage.iconphoto(False, iconPic)
+    
+    reportPageFrame = ttk.Frame(reportPage)
+    reportPageFrame.pack(fill="both", padx=int(30*zoomValue//1.75), pady=int(30*zoomValue//1.75), expand=True)
+    
+    reportPageTitleFrame = ttk.Frame(reportPageFrame)
+    reportPageTitleFrame.pack(side="top",fill="x", expand=True)
+    reportPageTitleLabel = ttk.Label(reportPageTitleFrame, text="掃描結果", font=("微軟正黑體", 25))
+    reportPageTitleLabel.grid(row=0, column=0, sticky="w", padx=int(10*zoomValue//1.75))
+    reportPageSubTitleLabel = ttk.Label(reportPageTitleFrame, text="找到"+str(len(appTiles))+"款預裝軟體", font=("微軟正黑體", 10))
+    reportPageSubTitleLabel.grid(row=1, column=0, sticky="w", padx=int(10*zoomValue//1.75))
+    
+    reportScrollFrame = scrolled.ScrolledFrame(reportPageFrame,autohide=True,height=int(450*zoomValue//1.75))
+    reportScrollFrame.pack(side="top",fill="both", expand=True)
+    
+    
+    for tile in appTiles:
+        tile.pack(reportScrollFrame)
+        print(tile.appName)
+    
+    bottomButtonFrame = ttk.Frame(reportPageFrame)
+    bottomButtonFrame.pack(side="bottom",fill="x", expand=True)
+    
+    global reportPageBackButton, reportPageUninstallButton
+    reportPageBackButton = ttk.Button(bottomButtonFrame, text="返回", command=reportPage.destroy)
+    reportPageBackButton.pack(side="right", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    
+    reportPageUninstallButton = ttk.Button(bottomButtonFrame, text="移除所選程式", command=uninstall_function, bootstyle="danger")
+    reportPageUninstallButton.pack(side="right", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    
+    reportPage.mainloop()
+
+def uninstallBloatApps():
+    for tile in appTiles:
+        tile.uninstall()
+    print("uninstall done")
+    time.sleep(3)
+    scanbtn_function()
+    reportPage.destroy()
+
+def uninstall_function():
+    boolean_wheel = threading.Thread(target=uninstallBloatApps)
+    boolean_wheel.start()
+   
+    # block button
+    reportPageBackButton['state'] = 'disabled'
+    reportPageUninstallButton['state'] = 'disabled'
+    
+    
+    
+    
 
 # 取得系統縮放倍率
 def getZoomValue():
@@ -626,7 +794,7 @@ scanButton=ttk.Button(meterFrame, text="掃描", command=scanbtn_function, boots
 scanButton.pack(side="top", padx=int(30*zoomValue//1.75), pady=int(10*zoomValue//1.75), fill="both", expand=True)
 
 #新增查看報表按鈕
-reportButton=ttk.Button(meterFrame, text="查看報表", command=scanbtn_function, bootstyle="info")
+reportButton=ttk.Button(meterFrame, text="查看報表", command=gotoReport, bootstyle="info")
 reportButton.pack(side="top", padx=int(30*zoomValue//1.75), pady=int(10*zoomValue//1.75), fill="both", expand=True)
 reportButton["state"] = "disabled"
 

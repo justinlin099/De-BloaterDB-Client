@@ -1,0 +1,1 @@
+pyinstaller.exe -F --noconsole --icon='icon.ico' ".\De-Bloater DB Client.py"
