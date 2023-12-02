@@ -127,16 +127,20 @@ def getHardwareInfo():
     if getThemeMode(themeName)=="b":
         if hardwareInfo["manufacturer"]=="framework" or hardwareInfo["manufacturer"]=="Framework":
             manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_framework_b))
+            manufacturerPic = manufacturerPic.subsample(int(round(1.75/getZoomValue(),0)))
             manufacturerPicLabel.config(image=manufacturerPic)
         elif hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd." or hardwareInfo["manufacturer"]=="MSI" or hardwareInfo["manufacturer"]=="MSI " or hardwareInfo["manufacturer"]=="MSI Corporation" or hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd" or hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd ":
             manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_msi_b))
+            manufacturerPic = manufacturerPic.subsample(int(round(1.75/getZoomValue(),0)))
             manufacturerPicLabel.config(image=manufacturerPic)
     else:
         if hardwareInfo["manufacturer"]=="framework" or hardwareInfo["manufacturer"]=="Framework":
             manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_framework_w))
+            manufacturerPic = manufacturerPic.subsample(int(round(1.75/getZoomValue(),0)))
             manufacturerPicLabel.config(image=manufacturerPic)
         elif hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd." or hardwareInfo["manufacturer"]=="MSI" or hardwareInfo["manufacturer"]=="MSI " or hardwareInfo["manufacturer"]=="MSI Corporation" or hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd" or hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd ":
             manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_msi_w))
+            manufacturerPic = manufacturerPic.subsample(int(round(1.75/getZoomValue(),0)))
             manufacturerPicLabel.config(image=manufacturerPic)
     
     
@@ -434,22 +438,37 @@ def gotoHelp():
     webbrowser.get('windows-default').open_new(urL)
     
 def gotoSettings():
-    settingsScreen = ttk.Toplevel(root, topmost=True)
+    #open config.json using notepad
+    subprocess.call("notepad data/config.json", shell=True, creationflags = subprocess.CREATE_NO_WINDOW)
     
-    settingsScreen.overrideredirect(True)
-    settingsScreen.title("設定")
-    window_height = 600
-    window_width = 800
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
-        # Coordinates of the upper left corner of the window to make the window appear in the center
-    x_cordinate = int((screen_width/2) - (window_width/2))
-    y_cordinate = int((screen_height/2) - (window_height/2))
-    settingsScreen.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
-    settingsScreen.iconphoto(False, iconPic)
+
+    # settingsScreen = ttk.Toplevel(root, topmost=True)
+    
+    # settingsScreen.overrideredirect(True)
+    # settingsScreen.title("設定")
+    # window_height = 600
+    # window_width = 800
+    # screen_width = root.winfo_screenwidth()
+    # screen_height = root.winfo_screenheight()
+    #     # Coordinates of the upper left corner of the window to make the window appear in the center
+    # x_cordinate = int((screen_width/2) - (window_width/2))
+    # y_cordinate = int((screen_height/2) - (window_height/2))
+    # settingsScreen.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
+    # settingsScreen.iconphoto(False, iconPic)
+
+# 取得系統縮放倍率
+def getZoomValue():
+    import ctypes
+    user32 = ctypes.windll.user32
+    user32.SetProcessDPIAware()
+    zoomValue = user32.GetDpiForSystem()/96
+    return zoomValue
+
 
 
 loadConfig()
+
+zoomValue = getZoomValue()
 
 # 主程式
 root=ttk.Window(themename=themeName, alpha=0)
@@ -462,13 +481,13 @@ root.overrideredirect(True)
 
 
 #設定縮放
-utility.enable_high_dpi_awareness(root,2.25) 
+#utility.enable_high_dpi_awareness(root,2.25) 
 
 
 root.title("De-Bloater DB 預裝軟體移除器")
 #root.wm_attributes("-topmost", 1)
-window_height = 1024
-window_width = 1280
+window_height = int(1024*zoomValue//1.75)
+window_width = int(1280*zoomValue//1.75)
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
     # Coordinates of the upper left corner of the window to make the window appear in the center
@@ -482,7 +501,7 @@ root.iconphoto(False, iconPic)
 root.iconphoto(True, iconPic)
 # root.iconbitmap(DBDBERes.iconico)
 # root.iconbitmap(default=DBDBERes.iconico)
-titleBarIcon = iconPic.subsample(20)
+titleBarIcon = iconPic.subsample(int(20/zoomValue*1.75))
 
 
 def SaveLastClickPos(event):
@@ -499,96 +518,96 @@ titleFrame = ttk.Frame(root, bootstyle="info")
 titleFrame.pack(side="top", fill="x")
 
 insideTitleFrame = ttk.Frame(titleFrame, bootstyle="info")
-insideTitleFrame.pack(side="bottom", fill="x", padx=20, pady=20)
+insideTitleFrame.pack(side="bottom", fill="x", padx=int(20*zoomValue//1.75), pady=int(20*zoomValue//1.75))
 
 
 
 titleBar=ttk.Frame(titleFrame, bootstyle="info")
-titleBar.pack(side="left", fill="x", padx=20, pady=20)
+titleBar.pack(side="left", fill="x", padx=int(20*zoomValue//1.75), pady=int(20*zoomValue//1.75))
 titleFrame.bind('<Button-1>', SaveLastClickPos)
 titleFrame.bind('<B1-Motion>', Dragging)
 titleBarButton=ttk.Frame(titleFrame, bootstyle="info")
-titleBarButton.pack(side="right",  padx=20, pady=20)
+titleBarButton.pack(side="right",  padx=int(20*zoomValue//1.75), pady=int(20*zoomValue//1.75))
 
 
 # 標題標籤
 titleIcon = ttk.Label(titleBar, image=titleBarIcon, bootstyle="inverse-info")
-titleIcon.grid(row=0, column=0, sticky="w", padx=10, pady=10)
+titleIcon.grid(row=0, column=0, sticky="w", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
 subTitleLabel = ttk.Label(titleBar, text="預裝軟體移除器", font=("微軟正黑體", 10), bootstyle="inverse-info")
 subTitleLabel.grid(row=0, column=1, sticky="w")
 
 
 #關閉視窗按鈕
 closeButton = ttk.Button(titleBarButton, text="✕", command=quit, bootstyle="danger")
-closeButton.grid(row=0, column=5, sticky="e",ipadx=20)
+closeButton.grid(row=0, column=5, sticky="e",ipadx=int(20*zoomValue//1.75))
 #最小化按鈕
 minimizeButton = ttk.Button(titleBarButton, text="__", command=minimize, bootstyle="info")
-minimizeButton.grid(row=0, column=4, sticky="e",ipadx=5)
+minimizeButton.grid(row=0, column=4, sticky="e",ipadx=int(5*zoomValue//1.75))
 #help按鈕
 helpButton = ttk.Button(titleBarButton, text="?", command=gotoHelp, bootstyle="info")
-helpButton.grid(row=0, column=3, sticky="e",ipadx=5)
+helpButton.grid(row=0, column=3, sticky="e",ipadx=int(5*zoomValue//1.75))
 #setting按鈕
 settingButton = ttk.Button(titleBarButton, text="⚙", command=gotoSettings, bootstyle="info")
-settingButton.grid(row=0, column=2, sticky="e",ipadx=5)
+settingButton.grid(row=0, column=2, sticky="e",ipadx=int(5*zoomValue//1.75))
 
 mainFrame = ttk.Frame(root)
-mainFrame.pack(fill="both", padx=20, pady=20, expand=True,side="bottom")
+mainFrame.pack(fill="both", padx=int(20*zoomValue//1.75), pady=int(20*zoomValue//1.75), expand=True,side="bottom")
 
 titleLabel = ttk.Label(insideTitleFrame, text="De-Bloater DB", font=("微軟正黑體", 25), bootstyle="inverse-info")
-titleLabel.grid(row=2, column=0, sticky="w", padx=10)
+titleLabel.grid(row=2, column=0, sticky="w", padx=int(10*zoomValue//1.75))
 versionLabel = ttk.Label(insideTitleFrame, text="軟體版本："+VERSION, font=("微軟正黑體", 10), bootstyle="inverse-info")
-versionLabel.grid(row=3, column=0, sticky="w", padx=10)
+versionLabel.grid(row=3, column=0, sticky="w", padx=int(10*zoomValue//1.75))
 global tagLabel
 tagLabel = ttk.Label(insideTitleFrame, text="Bloatware 定義檔版本："+tag, font=("微軟正黑體", 10), bootstyle="inverse-info")
-tagLabel.grid(row=4, column=0, sticky="w", padx=10)
+tagLabel.grid(row=4, column=0, sticky="w", padx=int(10*zoomValue//1.75))
 
 
 if __debugMode:
     Notebook = ttk.Notebook(mainFrame,bootstyle="info")
-    Notebook.pack(side="left", padx=10, pady=10, fill="both", expand=True)
-    hardwareInfoFrame = scrolled.ScrolledFrame(Notebook,autohide=True,width=700,padding=10)
+    Notebook.pack(side="left", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75), fill="both", expand=True)
+    hardwareInfoFrame = scrolled.ScrolledFrame(Notebook,autohide=True,width=int(700*zoomValue//1.75),padding=int(10*zoomValue//1.75))
     Notebook.add(hardwareInfoFrame.container, text="硬體資訊")
     #新增一個 scrolled text console 顯示除錯訊息
-    consoleFrame = scrolled.ScrolledFrame(Notebook,autohide=True,width=700,padding=10)
+    consoleFrame = scrolled.ScrolledFrame(Notebook,autohide=True,width=int(700*zoomValue//1.75),padding=int(10*zoomValue//1.75))
     Notebook.add(consoleFrame.container, text="除錯訊息")
     
     
-    consoleText=ttk.Label(consoleFrame,text=debugMessage, wraplength=700)
+    consoleText=ttk.Label(consoleFrame,text=debugMessage, wraplength=int(700*zoomValue//1.75))
     consoleText.pack(side="top", fill="both", expand=True)
     
     
 else:
     #hardwareinfo frame
     hardwareInfoOFrame = ttk.LabelFrame(mainFrame, text="硬體資訊", bootstyle="info")
-    hardwareInfoOFrame.pack(side="left", padx=10, pady=10, fill="both", expand=True)
-    hardwareInfoFrame = scrolled.ScrolledFrame(hardwareInfoOFrame,autohide=True,width=700,padding=10)
+    hardwareInfoOFrame.pack(side="left", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75), fill="both", expand=True)
+    hardwareInfoFrame = scrolled.ScrolledFrame(hardwareInfoOFrame,autohide=True,width=int(700*zoomValue//1.75),padding=int(10*zoomValue//1.75))
     hardwareInfoFrame.pack(side="top", fill="both", expand=True)    
 
 
 
    
 manufacturerPicLabel = ttk.Label(hardwareInfoFrame)
-manufacturerPicLabel.grid(column=0, row=0, padx=10, pady=10, sticky="w")
-manufacturerLabel= ttk.Label(hardwareInfoFrame, text="我的電腦",font=("微軟正黑體", 25), wraplength=700)
-manufacturerLabel.grid(column=0, row=1, padx=10, sticky="w")
-modelLabel= ttk.Label(hardwareInfoFrame, text="我的電腦",font=("微軟正黑體", 15), wraplength=700)
-modelLabel.grid(column=0, row=2, padx=10, sticky="w")
-cpuLabel = ttk.Label(hardwareInfoFrame,text="CPU: Unknown", wraplength=700)
-cpuLabel.grid(column=0, row=3, padx=10, pady=5, sticky="w")
-coreLabel = ttk.Label(hardwareInfoFrame,text="CPU: Unknown", wraplength=700)
-coreLabel.grid(column=0, row=4, padx=10, sticky="w")
-ramLabel = ttk.Label(hardwareInfoFrame,text="RAM: Unknown", wraplength=700)
-ramLabel.grid(column=0, row=5, padx=10, pady=5, sticky="w")
-gpuLabel = ttk.Label(hardwareInfoFrame,text="GPU: Unknown", wraplength=700)
-gpuLabel.grid(column=0, row=6, padx=10, pady=0, sticky="w")
-hardDiskLabel = ttk.Label(hardwareInfoFrame,text="Hard Disk: Unknown", wraplength=700)
-hardDiskLabel.grid(column=0, row=7, padx=10, pady=5, sticky="w")
-osLabel = ttk.Label(hardwareInfoFrame,text="OS: Unknown", wraplength=700)
-osLabel.grid(column=0, row=8, padx=10, pady=0, sticky="w")
-osInstallDateLabel = ttk.Label(hardwareInfoFrame,text="OS Install Date: Unknown", wraplength=700)
-osInstallDateLabel.grid(column=0, row=9, padx=10, pady=5, sticky="w")
-biosLabel = ttk.Label(hardwareInfoFrame,text="BIOS: Unknown", wraplength=700)
-biosLabel.grid(column=0, row=10, padx=10, pady=0, sticky="w")
+manufacturerPicLabel.grid(column=0, row=0, padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75), sticky="w")
+manufacturerLabel= ttk.Label(hardwareInfoFrame, text="我的電腦",font=("微軟正黑體", 25), wraplength=int(700*zoomValue//1.75))
+manufacturerLabel.grid(column=0, row=1, padx=int(10*zoomValue//1.75), sticky="w")
+modelLabel= ttk.Label(hardwareInfoFrame, text="我的電腦",font=("微軟正黑體", 15), wraplength=int(700*zoomValue//1.75))
+modelLabel.grid(column=0, row=2, padx=int(10*zoomValue//1.75), sticky="w")
+cpuLabel = ttk.Label(hardwareInfoFrame,text="CPU: Unknown", wraplength=int(700*zoomValue//1.75))
+cpuLabel.grid(column=0, row=3, padx=int(10*zoomValue//1.75), pady=int(5*zoomValue//1.75), sticky="w")
+coreLabel = ttk.Label(hardwareInfoFrame,text="CPU: Unknown", wraplength=int(700*zoomValue//1.75))
+coreLabel.grid(column=0, row=4, padx=int(10*zoomValue//1.75), sticky="w")
+ramLabel = ttk.Label(hardwareInfoFrame,text="RAM: Unknown", wraplength=int(700*zoomValue//1.75))
+ramLabel.grid(column=0, row=5, padx=int(10*zoomValue//1.75), pady=int(5*zoomValue//1.75), sticky="w")
+gpuLabel = ttk.Label(hardwareInfoFrame,text="GPU: Unknown", wraplength=int(700*zoomValue//1.75))
+gpuLabel.grid(column=0, row=6, padx=int(10*zoomValue//1.75), pady=0, sticky="w")
+hardDiskLabel = ttk.Label(hardwareInfoFrame,text="Hard Disk: Unknown", wraplength=int(700*zoomValue//1.75))
+hardDiskLabel.grid(column=0, row=7, padx=int(10*zoomValue//1.75), pady=int(5*zoomValue//1.75), sticky="w")
+osLabel = ttk.Label(hardwareInfoFrame,text="OS: Unknown", wraplength=int(700*zoomValue//1.75))
+osLabel.grid(column=0, row=8, padx=int(10*zoomValue//1.75), pady=0, sticky="w")
+osInstallDateLabel = ttk.Label(hardwareInfoFrame,text="OS Install Date: Unknown", wraplength=int(700*zoomValue//1.75))
+osInstallDateLabel.grid(column=0, row=9, padx=int(10*zoomValue//1.75), pady=int(5*zoomValue//1.75), sticky="w")
+biosLabel = ttk.Label(hardwareInfoFrame,text="BIOS: Unknown", wraplength=int(700*zoomValue//1.75))
+biosLabel.grid(column=0, row=10, padx=int(10*zoomValue//1.75), pady=0, sticky="w")
 
 
 
@@ -598,17 +617,17 @@ meterFrame.pack(side="left", fill="both", expand=True)
 # # 畫一個 Meter 在畫面正中央當掃描按鈕
 
 meter = ttk.Meter(meterFrame, amountused=100, subtext="尚未掃描", textright="分", bootstyle="warning",textfont=("微軟正黑體", 30),subtextfont=("微軟正黑體", 10))
-meter.pack(side="top", pady=30, padx=30, fill="both", expand=True)
+meter.pack(side="top", pady=int(30*zoomValue//1.75), padx=int(30*zoomValue//1.75), fill="both", expand=True)
 
 scanProgressBar = ttk.Progressbar(meterFrame, orient="horizontal", mode="indeterminate", maximum=100, value=0)
-scanProgressBar.pack(side="bottom", padx=30, fill="x", expand=True)
+scanProgressBar.pack(side="bottom", padx=int(30*zoomValue//1.75), fill="x", expand=True)
 
 scanButton=ttk.Button(meterFrame, text="掃描", command=scanbtn_function, bootstyle="success")
-scanButton.pack(side="top", padx=30, pady=10, fill="both", expand=True)
+scanButton.pack(side="top", padx=int(30*zoomValue//1.75), pady=int(10*zoomValue//1.75), fill="both", expand=True)
 
 #新增查看報表按鈕
 reportButton=ttk.Button(meterFrame, text="查看報表", command=scanbtn_function, bootstyle="info")
-reportButton.pack(side="top", padx=30, pady=10, fill="both", expand=True)
+reportButton.pack(side="top", padx=int(30*zoomValue//1.75), pady=int(10*zoomValue//1.75), fill="both", expand=True)
 reportButton["state"] = "disabled"
 
 
