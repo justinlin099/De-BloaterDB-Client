@@ -1,10 +1,6 @@
 # Debloater DB Client
-# Version: v0.1.2-alpha
-# 待修復問題:
-# 2. 網路連線的例外處理
+# Version: v0.2.0-beta
 # 待新增功能：
-# 1. 設定
-# 2. 查看報表
 # 3. 匯出報表
 import base64
 from pathlib import Path
@@ -23,7 +19,7 @@ from ttkbootstrap import scrolled
 debugMessage=""
 appTiles=[]
 
-VERSION = "v0.1.2-alpha"
+VERSION = "v0.2.0-beta"
 
 class uwpAppTile():
     def __init__(self,appName,developerName,appDescription,appType,appPath,installPath,uninstallPath,appShortName,developerURL,bloatRating,necessary,bloatReason):
@@ -608,7 +604,7 @@ def uninstallBloatApps():
     for tile in appTiles:
         tile.uninstall()
     print("uninstall done")
-    time.sleep(3)
+    time.sleep(8)
     scanbtn_function()
     reportPage.destroy()
 

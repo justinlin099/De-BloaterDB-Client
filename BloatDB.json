@@ -289,7 +289,7 @@
         "installPath": "Microsoft.MicrosoftJournal",
         "uninstallPath": "Microsoft.MicrosoftJournal",
         "appPath": "Microsoft.MicrosoftJournal",
-        "bloatRating": 0,
+        "bloatRating": 1,
         "necessary": false,
         "bloatReason": "不需要可進行移除"
     },
@@ -388,8 +388,8 @@
         "uninstallPath": "Microsoft.MicrosoftEdge",
         "appPath": "Microsoft.MicrosoftEdge",
         "bloatRating": 1,
-        "necessary": false,
-        "bloatReason": "Windows 內建的瀏覽器。"
+        "necessary": true,
+        "bloatReason": "Windows 內建的瀏覽器下載軟體。(無法移除為正常現象)"
     },
     {
         "appName": "Cortana",
@@ -403,7 +403,7 @@
         "appPath": "Microsoft.Windows.Cortana",
         "bloatRating": 1,
         "necessary": false,
-        "bloatReason": "微軟的語音助理，繁體中文無法使用，建議移除。"
+        "bloatReason": "微軟的語音助理，繁體中文無法使用，建議移除。(有時無法移除為正常現象)"
     },
     {
         "appName": "PhotoDirector 10 Essential for MSI",
@@ -543,7 +543,7 @@
         "appPath": "Microsoft.Advertising.Xaml",
         "bloatRating": 3,
         "necessary": false,
-        "bloatReason": "微軟廣告模組"
+        "bloatReason": "微軟廣告模組(無法移除為正常現象)"
     },
     {
         "appName": "Nahimic",
@@ -600,5 +600,33 @@
         "bloatRating": 0,
         "necessary": true,
         "bloatReason": "華碩筆電的控制軟體，建議保留。"
+    },
+    {
+        "appName": "Spotify",
+        "appShortName": "Spotify",
+        "appDescription": "Unknown",
+        "developerName": "Microsoft",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "SpotifyAB.SpotifyMusic",
+        "uninstallPath": "SpotifyAB.SpotifyMusic",
+        "appPath": "SpotifyAB.SpotifyMusic",
+        "bloatRating": 2,
+        "necessary": false,
+        "bloatReason": "Windows 預裝的廣告軟體，建議移除。"
+    },
+    {
+        "appName": "Disney+",
+        "appShortName": "Disney+",
+        "appDescription": "Unknown",
+        "developerName": "Microsoft",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "Disney.37853FC22B2CE",
+        "uninstallPath": "Disney.37853FC22B2CE",
+        "appPath": "Disney.37853FC22B2CE",
+        "bloatRating": 2,
+        "necessary": false,
+        "bloatReason": "Windows 預裝的廣告軟體，建議移除。"
     }
 ]

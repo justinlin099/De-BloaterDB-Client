@@ -14,3 +14,4 @@ dist/data/config.json
 build/De-bloater DB Client/warn-De-bloater DB Client.txt
 build/De-bloater DB Client/xref-De-bloater DB Client.html
 data/config.json
+DBDBWtoken.py

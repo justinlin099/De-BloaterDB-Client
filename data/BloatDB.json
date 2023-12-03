@@ -600,5 +600,33 @@
         "bloatRating": 0,
         "necessary": true,
         "bloatReason": "華碩筆電的控制軟體，建議保留。"
+    },
+    {
+        "appName": "Spotify",
+        "appShortName": "Spotify",
+        "appDescription": "Unknown",
+        "developerName": "Microsoft",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "SpotifyAB.SpotifyMusic",
+        "uninstallPath": "SpotifyAB.SpotifyMusic",
+        "appPath": "SpotifyAB.SpotifyMusic",
+        "bloatRating": 2,
+        "necessary": false,
+        "bloatReason": "Windows 預裝的廣告軟體，建議移除。"
+    },
+    {
+        "appName": "Disney+",
+        "appShortName": "Disney+",
+        "appDescription": "Unknown",
+        "developerName": "Microsoft",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "Disney.37853FC22B2CE",
+        "uninstallPath": "Disney.37853FC22B2CE",
+        "appPath": "Disney.37853FC22B2CE",
+        "bloatRating": 2,
+        "necessary": false,
+        "bloatReason": "Windows 預裝的廣告軟體，建議移除。"
     }
 ]
