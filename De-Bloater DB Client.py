@@ -1,5 +1,5 @@
 # Debloater DB Client
-# Version: v0.2.0-beta
+# Version: v0.2.1-beta
 # 待新增功能：
 # 3. 匯出報表
 import base64
@@ -19,7 +19,7 @@ from ttkbootstrap import scrolled
 debugMessage=""
 appTiles=[]
 
-VERSION = "v0.2.0-beta"
+VERSION = "v0.2.1-beta"
 
 class uwpAppTile():
     def __init__(self,appName,developerName,appDescription,appType,appPath,installPath,uninstallPath,appShortName,developerURL,bloatRating,necessary,bloatReason):
@@ -193,23 +193,64 @@ def getHardwareInfo():
     #更新電腦製造商Logo
     global manufacturerPic
     if getThemeMode(themeName)=="b":
+        #framework
         if hardwareInfo["manufacturer"]=="framework" or hardwareInfo["manufacturer"]=="Framework":
             manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_framework_b))
-            manufacturerPic = manufacturerPic.subsample(int(round(1.75/getZoomValue(),0)))
-            manufacturerPicLabel.config(image=manufacturerPic)
+        #MSI
         elif hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd." or hardwareInfo["manufacturer"]=="MSI" or hardwareInfo["manufacturer"]=="MSI " or hardwareInfo["manufacturer"]=="MSI Corporation" or hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd" or hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd ":
             manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_msi_b))
-            manufacturerPic = manufacturerPic.subsample(int(round(1.75/getZoomValue(),0)))
-            manufacturerPicLabel.config(image=manufacturerPic)
+        #ASUS
+        elif hardwareInfo["manufacturer"]=="ASUSTeK COMPUTER INC." or hardwareInfo["manufacturer"]=="ASUSTeK COMPUTER INC" or hardwareInfo["manufacturer"]=="ASUSTeK COMPUTER INC " or hardwareInfo["manufacturer"]=="ASUSTeK COMPUTER INC. ":
+            manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_asus_b))
+        #HP
+        elif hardwareInfo["manufacturer"]=="HP" or hardwareInfo["manufacturer"]=="Hewlett-Packard" or hardwareInfo["manufacturer"]=="Hewlett-Packard ":
+            manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_hp_b))
+        #DELL
+        elif hardwareInfo["manufacturer"]=="Dell Inc." or hardwareInfo["manufacturer"]=="Dell Inc" or hardwareInfo["manufacturer"]=="Dell Inc. " or hardwareInfo["manufacturer"]=="Dell Inc ": 
+            manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_dell_b))
+        #Lenovo
+        elif hardwareInfo["manufacturer"]=="LENOVO" or hardwareInfo["manufacturer"]=="LENOVO " or hardwareInfo["manufacturer"]=="Lenovo" or hardwareInfo["manufacturer"]=="Lenovo ":
+            manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_lenovo_b))
+        #Microsoft
+        elif hardwareInfo["manufacturer"]=="Microsoft Corporation" or hardwareInfo["manufacturer"]=="Microsoft Corporation " or hardwareInfo["manufacturer"]=="Microsoft Corporation  " or hardwareInfo["manufacturer"]=="Microsoft Corporation   ":
+            manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_microsoft_b))
+        #Acer
+        elif hardwareInfo["manufacturer"]=="Acer" or hardwareInfo["manufacturer"]=="Acer " or hardwareInfo["manufacturer"]=="Acer Incorporated" or hardwareInfo["manufacturer"]=="Acer Incorporated " or hardwareInfo["manufacturer"]=="Acer Incorporated  " or hardwareInfo["manufacturer"]=="Acer Incorporated   ":
+            manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_acer_b))
+            
+    
     else:
+        #framework
         if hardwareInfo["manufacturer"]=="framework" or hardwareInfo["manufacturer"]=="Framework":
             manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_framework_w))
-            manufacturerPic = manufacturerPic.subsample(int(round(1.75/getZoomValue(),0)))
-            manufacturerPicLabel.config(image=manufacturerPic)
+        #MSI
         elif hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd." or hardwareInfo["manufacturer"]=="MSI" or hardwareInfo["manufacturer"]=="MSI " or hardwareInfo["manufacturer"]=="MSI Corporation" or hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd" or hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd ":
             manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_msi_w))
-            manufacturerPic = manufacturerPic.subsample(int(round(1.75/getZoomValue(),0)))
-            manufacturerPicLabel.config(image=manufacturerPic)
+        #ASUS
+        elif hardwareInfo["manufacturer"]=="ASUSTeK COMPUTER INC." or hardwareInfo["manufacturer"]=="ASUSTeK COMPUTER INC" or hardwareInfo["manufacturer"]=="ASUSTeK COMPUTER INC " or hardwareInfo["manufacturer"]=="ASUSTeK COMPUTER INC. ":
+            manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_asus_w))
+        #HP
+        elif hardwareInfo["manufacturer"]=="HP" or hardwareInfo["manufacturer"]=="Hewlett-Packard" or hardwareInfo["manufacturer"]=="Hewlett-Packard ":
+            manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_hp_w))
+        #DELL
+        elif hardwareInfo["manufacturer"]=="Dell Inc." or hardwareInfo["manufacturer"]=="Dell Inc" or hardwareInfo["manufacturer"]=="Dell Inc. " or hardwareInfo["manufacturer"]=="Dell Inc ":
+            manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_dell_w))
+        #Lenovo
+        elif hardwareInfo["manufacturer"]=="LENOVO" or hardwareInfo["manufacturer"]=="LENOVO " or hardwareInfo["manufacturer"]=="Lenovo" or hardwareInfo["manufacturer"]=="Lenovo ":
+            manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_lenovo_w))
+        #Microsoft
+        elif hardwareInfo["manufacturer"]=="Microsoft Corporation" or hardwareInfo["manufacturer"]=="Microsoft Corporation " or hardwareInfo["manufacturer"]=="Microsoft Corporation  " or hardwareInfo["manufacturer"]=="Microsoft Corporation   ": 
+            manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_microsoft_w))
+        #Acer
+        elif hardwareInfo["manufacturer"]=="Acer" or hardwareInfo["manufacturer"]=="Acer " or hardwareInfo["manufacturer"]=="Acer Incorporated" or hardwareInfo["manufacturer"]=="Acer Incorporated " or hardwareInfo["manufacturer"]=="Acer Incorporated  " or hardwareInfo["manufacturer"]=="Acer Incorporated   ":
+            manufacturerPic = ttk.PhotoImage(data=base64.b64decode(DBDBERes.manufacturer_acer_w))
+            
+    
+    try:     
+        manufacturerPic = manufacturerPic.subsample(int(round(1.75/getZoomValue(),0)))
+        manufacturerPicLabel.config(image=manufacturerPic)
+    except:
+        print("無法取得電腦製造商Logo")
     
     
     

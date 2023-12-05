@@ -6,9 +6,9 @@
         "developerName": "Symantec",
         "developerURL": "https://www.symantec.com/",
         "appType": "Desktop",
-        "installPath": "C:\\Program Files\\Norton Security",
-        "uninstallPath": "/norton/uninstall",
-        "appPath": "norton.exe",
+        "installPath": "C:\\Program Files\\Norton Security\\Engine",
+        "uninstallPath": "C:\\Program Files (x86)\\NortonInstaller\\{0C55C096-0F1D-4F28-AAA2-85EF591126E7}\\NGC\\A5E82D02\\*\\InstStub.exe",
+        "appPath": "uiStub.exe",
         "bloatRating": 5,
         "necessary": false,
         "bloatReason": "Norton 是一套防毒軟體，但是在 Windows 上已經有內建 Windows Defender，因此不需要額外安裝防毒軟體。安裝 Norton 會影響電腦的效能。"
@@ -558,5 +558,47 @@
         "bloatRating": 0,
         "necessary": false,
         "bloatReason": "Nahimic 音效控制軟體，建議保留。"
+    },
+    {
+        "appName": "Corel Multi Camera Capture and Editing",
+        "appShortName": "CorelCorp.MultiCameraCaptureandEditing",
+        "appDescription": "Unknown",
+        "developerName": "CorelCorp",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "CorelCorp.MultiCameraCaptureandEditing",
+        "uninstallPath": "CorelCorp.MultiCameraCaptureandEditing",
+        "appPath": "CorelCorp.MultiCameraCaptureandEditing",
+        "bloatRating": 3,
+        "necessary": false,
+        "bloatReason": "華碩筆電預裝的多攝影機錄影軟體，不需要可以移除。"
+    },
+    {
+        "appName": "McAfee Security",
+        "appShortName": "5A894077.McAfeeSecurity",
+        "appDescription": "Unknown",
+        "developerName": "5A894077",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "5A894077.McAfeeSecurity",
+        "uninstallPath": "5A894077.McAfeeSecurity",
+        "appPath": "5A894077.McAfeeSecurity",
+        "bloatRating": 5,
+        "necessary": false,
+        "bloatReason": "華碩筆電預裝的防毒軟體，會占用系統資源，且 Windows 內建的 Windows Defender 已經足夠使用，不需要額外安裝防毒軟體。"
+    },
+    {
+        "appName": "MyASUS",
+        "appShortName": "MyASUS",
+        "appDescription": "Unknown",
+        "developerName": "B9ECED6F",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "B9ECED6F.ASUSPCAssistant",
+        "uninstallPath": "B9ECED6F.ASUSPCAssistant",
+        "appPath": "B9ECED6F.ASUSPCAssistant",
+        "bloatRating": 0,
+        "necessary": true,
+        "bloatReason": "華碩筆電的控制軟體，建議保留。"
     }
 ]

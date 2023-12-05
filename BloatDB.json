@@ -571,7 +571,7 @@
         "appPath": "CorelCorp.MultiCameraCaptureandEditing",
         "bloatRating": 3,
         "necessary": false,
-        "bloatReason": "華碩筆電預裝的多攝影機錄影軟體，不需要可以移除。"
+        "bloatReason": "華碩筆電預裝的多攝影機錄影軟體，且為試用版，會通知付費，如不需要使用建議移除。"
     },
     {
         "appName": "McAfee Security",
@@ -628,5 +628,61 @@
         "bloatRating": 2,
         "necessary": false,
         "bloatReason": "Windows 預裝的廣告軟體，建議移除。"
+    },
+    {
+        "appName": "Gameloft 遊戲",
+        "appShortName": "A278AB0D.GameloftGames",
+        "appDescription": "Unknown",
+        "developerName": "A278AB0D",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "A278AB0D.GameloftGames",
+        "uninstallPath": "A278AB0D.GameloftGames",
+        "appPath": "A278AB0D.GameloftGames",
+        "bloatRating": 3,
+        "necessary": false,
+        "bloatReason": "華碩筆電預裝的 Gameloft 遊戲之廣告程式，建議移除"
+    },
+    {
+        "appName": "Flipboard",
+        "appShortName": "Flipboard.Flipboard",
+        "appDescription": "Unknown",
+        "developerName": "Flipboard",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "Flipboard.Flipboard",
+        "uninstallPath": "Flipboard.Flipboard",
+        "appPath": "Flipboard.Flipboard",
+        "bloatRating": 3,
+        "necessary": false,
+        "bloatReason": "華碩筆電預裝的 Flipboard 廣告程式，建議移除。"
+    },
+    {
+        "appName": "TripAdvisor",
+        "appShortName": "TripAdvisorLLC.TripAdvisorHotelsFlightsRestaurants",
+        "appDescription": "Unknown",
+        "developerName": "TripAdvisorLLC",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "TripAdvisorLLC.TripAdvisorHotelsFlightsRestaurants",
+        "uninstallPath": "TripAdvisorLLC.TripAdvisorHotelsFlightsRestaurants",
+        "appPath": "TripAdvisorLLC.TripAdvisorHotelsFlightsRestaurants",
+        "bloatRating": 3,
+        "necessary": false,
+        "bloatReason": "華碩筆電預裝的 TripAdvisor 廣告程式，建議移除。"
+    },
+    {
+        "appName": "ASUS GIFTBOX",
+        "appShortName": "B9ECED6F.ASUSGIFTBOX",
+        "appDescription": "Unknown",
+        "developerName": "B9ECED6F",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "B9ECED6F.ASUSGIFTBOX",
+        "uninstallPath": "B9ECED6F.ASUSGIFTBOX",
+        "appPath": "B9ECED6F.ASUSGIFTBOX",
+        "bloatRating": 3,
+        "necessary": false,
+        "bloatReason": "華碩的廣告程式，是一個廣告應用商店，建議移除。"
     }
 ]
