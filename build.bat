@@ -1,1 +1,1 @@
-pyinstaller.exe -F --noconsole --icon='icon.ico' ".\De-Bloater DB Client.py"
+pyinstaller.exe -F --noconsole --icon='icon.ico' --uac-admin ".\De-Bloater DB Client.py"

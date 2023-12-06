@@ -19,7 +19,7 @@ from ttkbootstrap import scrolled
 debugMessage=""
 appTiles=[]
 
-VERSION = "v0.2.1-beta"
+VERSION = "v0.2.2-beta"
 
 class uwpAppTile():
     def __init__(self,appName,developerName,appDescription,appType,appPath,installPath,uninstallPath,appShortName,developerURL,bloatRating,necessary,bloatReason):

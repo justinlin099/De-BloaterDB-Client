@@ -684,5 +684,33 @@
         "bloatRating": 3,
         "necessary": false,
         "bloatReason": "華碩的廣告程式，是一個廣告應用商店，建議移除。"
+    },
+    {
+        "appName": "McAfee LiveSafe",
+        "appShortName": "McAfee",
+        "appDescription": "Unknown",
+        "developerName": "McAfee",
+        "developerURL": "Unknown",
+        "appType": "Desktop",
+        "installPath": "C:\\Program Files\\Common Files\\McAfee\\Platform",
+        "uninstallPath": "C:\\Program Files\\McAfee\\MSC\\mcuihost.exe /body:misp://MSCJsRes.dll::uninstall.html /id:uninstall",
+        "appPath": "McUICnt.exe",
+        "bloatRating": 5,
+        "necessary": false,
+        "bloatReason": "McAfee 防毒軟體，通常由你的電腦製造商裝入你的電腦。且 Windows 內已經有安裝防毒軟體，不需要另外安裝其他軟體，並且試用期過後還要另外付費購買，還會造成系統資源的佔用。"
+    },
+    {
+        "appName": "McAfee WebAdvisor",
+        "appShortName": "McAfee WebAdvisor",
+        "appDescription": "Unknown",
+        "developerName": "McAfee",
+        "developerURL": "Unknown",
+        "appType": "Desktop",
+        "installPath": "C:\\Program Files\\McAfee\\WebAdvisor\\",
+        "uninstallPath": "C:\\Program Files\\McAfee\\WebAdvisor\\Uninstaller.exe",
+        "appPath": "uninstaller.exe",
+        "bloatRating": 5,
+        "necessary": false,
+        "bloatReason": "McAfee 瀏覽器防毒軟體，通常由你的電腦製造商裝入你的電腦。且 Windows 內已經有安裝防毒軟體，不需要另外安裝其他軟體，並且試用期過後還要另外付費購買，還會造成系統資源的佔用。"
     }
 ]
