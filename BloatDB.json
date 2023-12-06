@@ -712,5 +712,33 @@
         "bloatRating": 5,
         "necessary": false,
         "bloatReason": "McAfee 瀏覽器防毒軟體，通常由你的電腦製造商裝入你的電腦。且 Windows 內已經有安裝防毒軟體，不需要另外安裝其他軟體，並且試用期過後還要另外付費購買，還會造成系統資源的佔用。"
+    },
+    {
+        "appName": "Asus Virtual Pet",
+        "appShortName": "Asus Virtual Pet",
+        "appDescription": "Unknown",
+        "developerName": "Asus",
+        "developerURL": "Unknown",
+        "appType": "Desktop",
+        "installPath": "C:\\Windows\\Installer\\39d13.msi",
+        "uninstallPath": "C:\\Windows\\Installer\\39d13.msi",
+        "appPath": "",
+        "bloatRating": 1,
+        "necessary": false,
+        "bloatReason": "華碩筆電預裝的 Asus Virtual Pet 程式，大部分人不需使用，可以進行移除。"
+    },
+    {
+        "appName": "Armoury Crate",
+        "appShortName": "Armoury Crate",
+        "appDescription": "Unknown",
+        "developerName": "Asus",
+        "developerURL": "Unknown",
+        "appType": "UWP",
+        "installPath": "B9ECED6F.ArmouryCrate",
+        "uninstallPath": "B9ECED6F.ArmouryCrate",
+        "appPath": "B9ECED6F.ArmouryCrate",
+        "bloatRating": 1,
+        "necessary": true,
+        "bloatReason": "華碩筆電的控制軟體，建議保留，但是內部有廣告。"
     }
 ]
