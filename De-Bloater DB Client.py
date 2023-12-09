@@ -1,5 +1,5 @@
 # Debloater DB Client
-# Version: v0.2.1-beta
+# Version: v0.3.0-beta
 # 待新增功能：
 # 3. 匯出報表
 import base64
@@ -20,7 +20,7 @@ import reportGenerator
 debugMessage=""
 appTiles=[]
 
-VERSION = "v0.2.2-beta"
+VERSION = "v0.3.0-beta"
 
 class uwpAppTile():
     def __init__(self,appName,developerName,appDescription,appType,appPath,installPath,uninstallPath,appShortName,developerURL,bloatRating,necessary,bloatReason):
@@ -574,7 +574,7 @@ def createStartUpScreen(root):
 def gotoHelp():
     #開啟瀏覽器至GitHub專案https://github.com/justinlin099/De-BloaterDB-Client/wiki
     import webbrowser    
-    urL='https://github.com/justinlin099/De-BloaterDB-Client/wiki'
+    urL='https://debloaterdb.justinl.in/'
     webbrowser.get('windows-default').open_new(urL)
     
 def gotoSettings():
@@ -677,22 +677,35 @@ def gotoGenerateReport():
     generateReportWindow.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
     generateReportWindow.iconphoto(False, iconPic)
     
+    generateReportFrame = ttk.Frame(generateReportWindow)
+    generateReportFrame.pack(fill="both", padx=int(30*zoomValue//1.75), pady=int(30*zoomValue//1.75), expand=True)
+    # 標題
+    generateReportTitleFrame = ttk.Frame(generateReportFrame)
+    generateReportTitleFrame.pack(side="top",fill="x", expand=True)
+    generateReportTitleLabel = ttk.Label(generateReportTitleFrame, text="產生報告", font=("微軟正黑體", 25))
+    generateReportTitleLabel.grid(row=0, column=0, sticky="w", padx=int(10*zoomValue//1.75))
+    generateReportSubTitleLabel = ttk.Label(generateReportTitleFrame, text="請輸入您的名稱與電子郵件，按下確認後將會開啟您的電子郵件寄送程式，請將產生的報表放進附件中寄給我們。", font=("微軟正黑體", 10), wraplength=int(700*zoomValue//1.75))
+    generateReportSubTitleLabel.grid(row=1, column=0, sticky="w", padx=int(10*zoomValue//1.75))
+    
+    #文字方塊外框
+    generateReportEntryFrame = ttk.Frame(generateReportFrame)
+    generateReportEntryFrame.pack(side="top",fill="x", expand=True)
     #新增一個文字方塊要求輸入使用者名稱
-    userNameLabel = ttk.Label(generateReportWindow, text="請輸入您的名稱：", font=("微軟正黑體", 10))
-    userNameLabel.pack(side="top", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
-    userNameEntry = ttk.Entry(generateReportWindow, font=("微軟正黑體", 10))
-    userNameEntry.pack(side="top", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    userNameLabel = ttk.Label(generateReportEntryFrame, text="請輸入您的名稱：", font=("微軟正黑體", 10))
+    userNameLabel.grid(row=0, column=0, sticky="w", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    userNameEntry = ttk.Entry(generateReportEntryFrame, font=("微軟正黑體", 10))
+    userNameEntry.grid(row=0, column=1, sticky="we", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75), columnspan=2)
     
     #新增一個文字方塊要求輸入使用者電子郵件
-    userMailLabel = ttk.Label(generateReportWindow, text="請輸入您的電子郵件：", font=("微軟正黑體", 10))
-    userMailLabel.pack(side="top", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
-    userMailEntry = ttk.Entry(generateReportWindow, font=("微軟正黑體", 10))
-    userMailEntry.pack(side="top", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    userMailLabel = ttk.Label(generateReportEntryFrame, text="請輸入您的電子郵件：", font=("微軟正黑體", 10))
+    userMailLabel.grid(row=1, column=0, sticky="w", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    userMailEntry = ttk.Entry(generateReportEntryFrame, font=("微軟正黑體", 10))
+    userMailEntry.grid(row=1, column=1, sticky="we", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75), columnspan=2)
     
     # 新增確認與取消按鈕
-    confirmButton = ttk.Button(generateReportWindow, text="確認", command=lambda:generateReport(generateReportWindow, appTiles, hardwareInfo, myUWPList, userNameEntry.get(), userMailEntry.get(), meter.amountusedvar.get()))
+    confirmButton = ttk.Button(generateReportFrame, text="確認", command=lambda:generateReport(generateReportWindow, appTiles, hardwareInfo, myUWPList, userNameEntry.get(), userMailEntry.get(), meter.amountusedvar.get()))
     confirmButton.pack(side="right", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
-    cancelButton = ttk.Button(generateReportWindow, text="取消", command=generateReportWindow.destroy)
+    cancelButton = ttk.Button(generateReportFrame, text="取消", command=generateReportWindow.destroy)
     cancelButton.pack(side="right", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
     
     # userName = input("請輸入您的名稱：")
@@ -707,8 +720,9 @@ def generateReport(generateReportWindow,appTiles, hardwareInfo, myUWPList, userN
         return
     else:
         report = reportGenerator.generateReport(appTiles, hardwareInfo, myUWPList, userName, userMail, score)
-        reportGenerator.uploadReport(report)
-        ttk.dialogs.dialogs.Messagebox.show_info("已成功上傳報告!", title='已成功上傳報告', parent=generateReportWindow, alert=True)
+        ttk.dialogs.dialogs.Messagebox.show_info("已經將報告存檔於您的桌面上，檔名為"+report+"，將會開啟電子郵件寄送頁面，請將報告以附件檔傳送給我們！", title='產生報表成功', parent=generateReportWindow, alert=True)
+        reportGenerator.uploadReport()
+        ttk.dialogs.dialogs.Messagebox.show_info("感謝您的貢獻!", title='已成功上傳報告', parent=generateReportWindow, alert=True)
         generateReportWindow.destroy()
     
 # 取得系統縮放倍率

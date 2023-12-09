@@ -1,8 +1,11 @@
 import time
 import subprocess
+from pathlib import Path
+
 def generateReport(appTiles, hardwareInfo, uwpList, userName, Email, score):
     # Code to generate report
-    fileName=time.strftime("%Y-%m-%d-%H%M%S-")+Email+".md"
+
+    fileName=str(Path.home())+"\\desktop\\"+time.strftime("%Y-%m-%d-%H%M%S-")+Email+".md"
     reportContent=""
     
     # 新增Header
@@ -13,7 +16,33 @@ def generateReport(appTiles, hardwareInfo, uwpList, userName, Email, score):
     #新增副標題(電腦製造商)
     reportContent+=hardwareInfo["manufacturer"]+"\ncategories: "
     #新增分類(電腦製造商)
-    reportContent+=hardwareInfo["manufacturer"]+"\ntags: ["
+    if hardwareInfo["manufacturer"]=="framework" or hardwareInfo["manufacturer"]=="Framework":
+        reportContent+="Framework"
+    #MSI
+    elif hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd." or hardwareInfo["manufacturer"]=="MSI" or hardwareInfo["manufacturer"]=="MSI " or hardwareInfo["manufacturer"]=="MSI Corporation" or hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd" or hardwareInfo["manufacturer"]=="Micro-Star International Co., Ltd ":
+        reportContent+="MSI"
+    #ASUS
+    elif hardwareInfo["manufacturer"]=="ASUSTeK COMPUTER INC." or hardwareInfo["manufacturer"]=="ASUSTeK COMPUTER INC" or hardwareInfo["manufacturer"]=="ASUSTeK COMPUTER INC " or hardwareInfo["manufacturer"]=="ASUSTeK COMPUTER INC. ":
+        reportContent+="ASUS"                
+    #HP
+    elif hardwareInfo["manufacturer"]=="HP" or hardwareInfo["manufacturer"]=="Hewlett-Packard" or hardwareInfo["manufacturer"]=="Hewlett-Packard ":
+        reportContent+="HP"
+    #DELL
+    elif hardwareInfo["manufacturer"]=="Dell Inc." or hardwareInfo["manufacturer"]=="Dell Inc" or hardwareInfo["manufacturer"]=="Dell Inc. " or hardwareInfo["manufacturer"]=="Dell Inc ": 
+        reportContent+="DELL"
+    #Lenovo
+    elif hardwareInfo["manufacturer"]=="LENOVO" or hardwareInfo["manufacturer"]=="LENOVO " or hardwareInfo["manufacturer"]=="Lenovo" or hardwareInfo["manufacturer"]=="Lenovo ":
+        reportContent+="Lenovo"
+    #Microsoft
+    elif hardwareInfo["manufacturer"]=="Microsoft Corporation" or hardwareInfo["manufacturer"]=="Microsoft Corporation " or hardwareInfo["manufacturer"]=="Microsoft Corporation  " or hardwareInfo["manufacturer"]=="Microsoft Corporation   ":
+        reportContent+="Microsoft"
+    #Acer
+    elif hardwareInfo["manufacturer"]=="Acer" or hardwareInfo["manufacturer"]=="Acer " or hardwareInfo["manufacturer"]=="Acer Incorporated" or hardwareInfo["manufacturer"]=="Acer Incorporated " or hardwareInfo["manufacturer"]=="Acer Incorporated  " or hardwareInfo["manufacturer"]=="Acer Incorporated   ":
+        reportContent+="Acer"
+    else :
+        reportContent+=hardwareInfo["manufacturer"]
+    
+    reportContent+="\ntags: ["
     #新增標籤(E-mail)
     reportContent+=Email+"]\nauthor: 由 "
     #新增作者(使用者名稱)
@@ -68,7 +97,7 @@ def generateReport(appTiles, hardwareInfo, uwpList, userName, Email, score):
                 if i<tile.bloatRating:
                     reportContent+="🔴"
                 else:
-                    reportContent+="⚫"
+                    reportContent+="⚪"
             reportContent+="  \n"
             reportContent+="> 描述："+tile.bloatReason+"  \n\n"
             
@@ -85,16 +114,28 @@ def generateReport(appTiles, hardwareInfo, uwpList, userName, Email, score):
                 if i<tile.bloatRating:
                     reportContent+="🔴"
                 else:
-                    reportContent+="⚫"
+                    reportContent+="⚪"
             reportContent+="  \n"
-            reportContent+="> 描述："+tile.bloatReason+"  \n"
+            reportContent+="> 描述："+tile.bloatReason+"  \n\n"
               
 
     # 建立並寫入檔案
-    with open(fileName, "w+", encoding="utf-8") as f:
-        f.write(reportContent)
+    try:
+        with open(fileName, "w+", encoding="utf-8") as f:
+            f.write(reportContent)
+    except:
+        fileName=str(Path.home())+time.strftime("%Y-%m-%d-%H%M%S-")+Email+".md"
+        with open(fileName, "w+", encoding="utf-8") as f:
+            f.write(reportContent)
+    
+    return time.strftime("%Y-%m-%d-%H%M%S-")+Email+".md"
         
-def uploadReport(fileName, Email, userName):
+        
+def uploadReport():
     # Code to upload report
+    #呼叫 Desktop 沒用，先暫時 Disable
+    #subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', "explorer.exe \"desktop\""], stdout=subprocess.PIPE, creationflags = subprocess.CREATE_NO_WINDOW)
     
-    
+    import webbrowser
+    urL="mailto:justin.lin099backup+debloaterdb@gmail.com?subject=貢獻 De-Bloater DB 掃描結果&body=請將報告檔拖放至此傳送給我們！"
+    webbrowser.get('windows-default').open_new(urL)
