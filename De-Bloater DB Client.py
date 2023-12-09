@@ -16,6 +16,7 @@ import requests
 import DBDBERes
 from ctypes import windll
 from ttkbootstrap import scrolled
+import reportGenerator
 debugMessage=""
 appTiles=[]
 
@@ -290,13 +291,12 @@ def getHardwareInfo():
 
   
 def scanBloatware():
-    global bloatDB
+    global bloatDB, myUWPList, appTiles
     #meter.config(subtext="正在掃描...", textright="分")
     meter["amountused"]=100
     meter["subtext"]="正在掃描..."
     myUWPList = UWPScanner.ScanUWP()
     #scan UWP
-    global appTiles
     appTiles=[]
     for app in bloatDB:
         global debugMessage
@@ -639,6 +639,10 @@ def gotoReport():
     reportPageUninstallButton = ttk.Button(bottomButtonFrame, text="移除所選程式", command=uninstall_function, bootstyle="danger")
     reportPageUninstallButton.pack(side="right", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
     
+    # 產生報告
+    reportGenerationButton = ttk.Button(bottomButtonFrame, text="產生報告並上傳", command=gotoGenerateReport)
+    reportGenerationButton.pack(side="right", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    
     reportPage.mainloop()
 
 def uninstallBloatApps():
@@ -660,7 +664,53 @@ def uninstall_function():
     
     
     
-
+def gotoGenerateReport():
+    generateReportWindow=ttk.Toplevel(reportPage)
+    generateReportWindow.title("產生報告")
+    window_height = int(600*zoomValue//1.75)
+    window_width = int(800*zoomValue//1.75)
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+        # Coordinates of the upper left corner of the window to make the window appear in the center
+    x_cordinate = int((screen_width/2) - (window_width/2))
+    y_cordinate = int((screen_height/2) - (window_height/2))
+    generateReportWindow.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
+    generateReportWindow.iconphoto(False, iconPic)
+    
+    #新增一個文字方塊要求輸入使用者名稱
+    userNameLabel = ttk.Label(generateReportWindow, text="請輸入您的名稱：", font=("微軟正黑體", 10))
+    userNameLabel.pack(side="top", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    userNameEntry = ttk.Entry(generateReportWindow, font=("微軟正黑體", 10))
+    userNameEntry.pack(side="top", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    
+    #新增一個文字方塊要求輸入使用者電子郵件
+    userMailLabel = ttk.Label(generateReportWindow, text="請輸入您的電子郵件：", font=("微軟正黑體", 10))
+    userMailLabel.pack(side="top", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    userMailEntry = ttk.Entry(generateReportWindow, font=("微軟正黑體", 10))
+    userMailEntry.pack(side="top", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    
+    # 新增確認與取消按鈕
+    confirmButton = ttk.Button(generateReportWindow, text="確認", command=lambda:generateReport(generateReportWindow, appTiles, hardwareInfo, myUWPList, userNameEntry.get(), userMailEntry.get(), meter.amountusedvar.get()))
+    confirmButton.pack(side="right", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    cancelButton = ttk.Button(generateReportWindow, text="取消", command=generateReportWindow.destroy)
+    cancelButton.pack(side="right", padx=int(10*zoomValue//1.75), pady=int(10*zoomValue//1.75))
+    
+    # userName = input("請輸入您的名稱：")
+    # userMail = input("請輸入您的電子郵件：")
+    # report = reportGenerator.generateReport(appTiles, hardwareInfo, myUWPList, userName, userMail, meter.amountusedvar.get())
+    
+    generateReportWindow.mainloop()
+    
+def generateReport(generateReportWindow,appTiles, hardwareInfo, myUWPList, userName, userMail, score):
+    if userName=="" or userMail=="":
+        ttk.dialogs.dialogs.Messagebox.show_error("請輸入您的名稱與電子郵件!", title='請輸入您的名稱與電子郵件', parent=generateReportWindow, alert=True)
+        return
+    else:
+        report = reportGenerator.generateReport(appTiles, hardwareInfo, myUWPList, userName, userMail, score)
+        reportGenerator.uploadReport(report)
+        ttk.dialogs.dialogs.Messagebox.show_info("已成功上傳報告!", title='已成功上傳報告', parent=generateReportWindow, alert=True)
+        generateReportWindow.destroy()
+    
 # 取得系統縮放倍率
 def getZoomValue():
     import ctypes
