@@ -1,5 +1,5 @@
 # Debloater DB Client
-# Version: v0.3.0-beta
+# Version: v0.3.1-beta
 # 待新增功能：
 # 3. 匯出報表
 import base64
@@ -20,7 +20,7 @@ import reportGenerator
 debugMessage=""
 appTiles=[]
 
-VERSION = "v0.3.0-beta"
+VERSION = "v0.3.1-beta"
 
 class uwpAppTile():
     def __init__(self,appName,developerName,appDescription,appType,appPath,installPath,uninstallPath,appShortName,developerURL,bloatRating,necessary,bloatReason):
@@ -90,8 +90,13 @@ class uwpAppTile():
             # 移除
             if self.appType=="UWP":
                 subprocess.Popen(['C:\Windows\System32\WindowsPowerShell\\v1.0\powershell.exe', 'Get-AppxPackage '+self.installPath+' | Remove-AppxPackage'], stdout=subprocess.PIPE, creationflags = subprocess.CREATE_NO_WINDOW)
-            else:
+            elif self.appType=="Desktop":
                 subprocess.Popen(self.uninstallPath, stdout=subprocess.PIPE, creationflags = subprocess.CREATE_NO_WINDOW)
+            elif self.appType=="Link":
+                uninstaller=Path(self.uninstallPath)
+                if uninstaller.exists():
+                    uninstaller.unlink()
+                    print("已移除 "+self.appName)
         
             
             
@@ -320,8 +325,16 @@ def scanBloatware():
             time.sleep(0.1)
         
         #scan desktop app
-        elif app["appType"]=="Desktop":
-            path = Path(app["installPath"])
+        elif app["appType"]=="Desktop" or app["appType"]=="Link":
+            
+            if app["installPath"].find("*")!=-1:
+                installPath=app["installPath"].split("*")
+                installBase=Path(installPath[0])
+                for folder in installBase.iterdir():
+                    if folder.is_dir():
+                        if Path(str(folder)+installPath[1]).exists():
+                                app["installPath"]=str(folder)+installPath[1]
+            path = Path(app["installPath"])  
             if path.exists():
                 if __debugMode:
                     debugMessage+="\n找到預裝軟體："+app["appName"]

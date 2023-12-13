@@ -1294,11 +1294,25 @@
         "developerName": "SweetLabs Inc.",
         "developerURL": "Unknown",
         "appType": "Desktop",
-        "installPath": "C:\\Users\\Justin\\AppData\\Local\\Host App Service\\Uninstall.exe",
-        "uninstallPath": "C:\\Users\\Justin\\AppData\\Local\\Host App Service\\Uninstall.exe /SELF=1",
-        "appPath": "C:\\Users\\Justin\\AppData\\Local\\Host App Service\\Uninstall.exe",
+        "installPath": "C:\\Users\\*\\AppData\\Local\\Host App Service\\Uninstall.exe",
+        "uninstallPath": "C:\\Users\\*\\AppData\\Local\\Host App Service\\Uninstall.exe",
+        "appPath": "C:\\Users\\*\\AppData\\Local\\Host App Service\\Uninstall.exe",
         "bloatRating": 5,
         "necessary": false,
         "bloatReason": "Acer 預裝的廣告軟體程式。"
+    },
+    {
+        "appName": "Planet 9",
+        "appShortName": "Planet 9",
+        "appDescription": "Unknown",
+        "developerName": "AcerIncorporated",
+        "developerURL": "Unknown",
+        "appType": "Link",
+        "installPath": "C:\\Users\\*\\AppData\\Roaming\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\Planet9 Link.lnk",
+        "uninstallPath": "C:\\Users\\*\\AppData\\Roaming\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\Planet9 Link.lnk",
+        "appPath": "C:\\Users\\*\\AppData\\Roaming\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar\\Planet9 Link.lnk",
+        "bloatRating": 5,
+        "necessary": false,
+        "bloatReason": "Acer 的連結廣告程式，導向他們的電商平台，可以移除。"
     }
 ]
