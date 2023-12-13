@@ -1286,5 +1286,19 @@
         "bloatRating": 0,
         "necessary": false,
         "bloatReason": "Audio control panel for some acer laptops, you can keep it."
+    },
+    {
+        "appName": "App Explorer",
+        "appShortName": "App Explorer",
+        "appDescription": "Unknown",
+        "developerName": "SweetLabs Inc.",
+        "developerURL": "Unknown",
+        "appType": "Desktop",
+        "installPath": "C:\\Users\\Justin\\AppData\\Local\\Host App Service\\Uninstall.exe",
+        "uninstallPath": "C:\\Users\\Justin\\AppData\\Local\\Host App Service\\Uninstall.exe /SELF=1",
+        "appPath": "C:\\Users\\Justin\\AppData\\Local\\Host App Service\\Uninstall.exe",
+        "bloatRating": 5,
+        "necessary": false,
+        "bloatReason": "Acer 預裝的廣告軟體程式。"
     }
 ]
